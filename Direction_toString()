@@ -1,0 +1,35 @@
+public String toString()
+{
+  if(this.equals(Direction.WEST)
+  {
+    return "West";
+  }
+  else if(this.equals(Direction.EAST))
+  {
+    return "East";
+  }
+  else if(this.equals(Direction.SOUTH))
+  {
+    return "South";
+  }
+  else if(this.equals(Direction.NORTHEAST))
+  {
+    return "Northeast";
+  }
+  else if(this.equals(Direction.SOUTHEAST))
+  {
+    return "Southeast";
+  }
+  else if(this.equals(Direction.SOUTHWEST))
+  {
+    return "Southwest";
+  }
+  else if(this.equals(Direction.NORTHWEST))
+  {
+    return "Northwest";
+  }
+  else
+  {
+    return "North";
+  }
+}
