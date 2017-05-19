@@ -13,7 +13,7 @@ public class SquareEnvironment
 	}
 	
 	
-	Direction getDirection(Location fromLoc, Location toLoc)
+	public Direction getDirection(Location fromLoc, Location toLoc)
 	{
 		if((fromLoc.row() < toLoc.row()) && (fromLoc.col() == toLoc.col()))
 		{
