@@ -1,0 +1,19 @@
+//Snake Game
+//Tyler Murray
+
+public Food implements Locatable
+{
+	
+	private Location loc;
+	
+	public Obstacle(Location l)
+	{
+		loc = l;	
+	}
+	
+	public Location location()
+	{
+		return loc;
+	}
+	
+}
