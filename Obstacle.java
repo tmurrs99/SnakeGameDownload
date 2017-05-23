@@ -37,6 +37,11 @@ public class Obstacle implements Locatable
 		return locs;
 	}
 	
+	public void move()
+	{
+		//obstacles wont move for now
+	}
+	
 	public int getyLength()
 	{
 		return yLength;
