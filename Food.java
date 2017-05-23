@@ -20,5 +20,9 @@ public class Food implements Locatable
 		return v;
 	}
 	
+	public void move()
+	{
+		//food doesnt move
+	}
 }
 
