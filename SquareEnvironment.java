@@ -2,7 +2,6 @@
 //Tyler Murray
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class SquareEnvironment
 {
@@ -22,6 +21,14 @@ public class SquareEnvironment
 	}
 	
 	
+	public int getRows()
+	{
+		return numRows;
+	}
+	public int getCols()
+	{
+		return numCols;
+	}
 	public Direction getDirection(Location fromLoc, Location toLoc)
 	{
 		if((fromLoc.row() < toLoc.row()) && (fromLoc.col() == toLoc.col()))

@@ -10,6 +10,9 @@ public class Level
 	private int clock = 0;
 	private int foodEaten = 0;
 	private int foodRequired;
+	private boolean over;
+	private boolean won = false;
+	private int score;
 	
 	public Level(SnakeEnv env)
 	{
@@ -30,10 +33,11 @@ public class Level
 				entities.add(new Obstacle(new Location(i, theEnv.numRows()-1)));
 		}
 	}
-	public Level(SnakeEnv env, boolean bounded, ArrayList<Locatable> initEnt, int foodR)
+	public Level(SnakeEnv env, boolean bounded, ArrayList<Locatable> initEnt, int foodR, int s)
 	{
 		theEnv = env;
 		foodRequired = foodR;
+		score = s;
 		if(bounded)
 		{
 			for(int i = 0; i < theEnv.numRows(); i++)
@@ -56,11 +60,25 @@ public class Level
 		return clock;
 	}
 	
-	public void simStep()
+	public boolean isOver()
+	{
+		return over;
+	}
+	
+	public boolean won()
+	{
+		return won;
+	}
+	
+	public int getScore()
+	{
+		return score;
+	}
+	
+	public void simStep(Direction dir)
 	{
 		for(int i = 0; i < entities.size(); i++)
-		{
-			entities.get(i).move();
+		{	
 			
 			//check if the snake collides with an enemy and should die or eats food
 			if(entities.get(i) instanceof Snake)
@@ -70,27 +88,45 @@ public class Level
 					if(j == i);
 					else if((entities.get(j)) instanceof Obstacle || entities.get(j) instanceof Turret)
 					{
-						if(entities.get(i).location().equals(entities.get(j).location()))
+						if(entities.get(i).location().equals(entities.get(j).location().adjacent(dir)))
 						{
 							//Do the level failed animation
 							//Exit level
+							over = true;
+							won = false;
+							break;
 						}
 					}
-					else if(entities.get(j) instanceof Coin)
+					else if(entities.get(j) instanceof Coin && 
+							entities.get(i).location().equals(entities.get(j).location().adjacent(dir)))
 					{
 						score += 5;
+						theEnv.remove(entities.get(j));
+						entities.remove(j);
+						break;
 					}
-					else if(entities.get(j) instanceof Food)
+					else if(entities.get(j) instanceof Food &&
+							entities.get(i).location().equals(entities.get(j).location().adjacent(dir)))
 					{
 						entities.get(i).move(true);
 						foodEaten++;
+						theEnv.remove(entities.get(j));
+						entities.remove(j);
+						break;
 					}
 				}
+				entities.get(i).move(false);
 				if(foodEaten >= foodRequired)
 				{
 					//LevelComplete
+					over = true;
+					won = true;
 				}
 						
+			}
+			else
+			{
+				entities.get(i).move(false);
 			}
 		}
 		

@@ -2,7 +2,7 @@ import java.util.ArrayList;
 //Snake Game
 //Tyler Murray
 
-public abstract class Pickup
+public abstract class Pickup implements Locatable
 {
 	
 	private Location loc;

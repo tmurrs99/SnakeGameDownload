@@ -32,7 +32,7 @@ public class Location
 			return 1;
 		else if(this.row() < other.row())
 			return -1;
-		else if(this.col() > other.col())
+		else if(this.col() > other.row())
 			return 1;
 		else if(this.col() < other.col())
 			return -1;
@@ -42,7 +42,7 @@ public class Location
 	
 	public String toString()
 	{
-		return "Location (" + this.row() + "," + this.col() + ")";
+		return "Location (" + row() + "," + col() + ")";
 	}
 }
 

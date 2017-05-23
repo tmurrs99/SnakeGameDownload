@@ -6,9 +6,19 @@ import java.util.ArrayList;
 public class Coin extends Pickup implements Locatable
 {
 	
-	private Location loc;
+	//private Location loc;
+	private SnakeEnv theEnv;
 	
-	public Coin(Location l)
+	public Coin(SnakeEnv env)
+	{
+		do
+		{
+			Location l = new Location((int)Math.random(theEnv.))
+		}while(!theEnv.isEmpty(l))
+		super
+	}
+	
+	public Coin(SnakeEnv env, Location l)
 	{
 		super(l);	
 	}
@@ -18,7 +28,7 @@ public class Coin extends Pickup implements Locatable
 		return super.location();
 	}
 	
-	public void move()
+	public void move(boolean eats)
 	{
 		//coins dont move
 	}

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Food extends Pickup implements Locatable
 {
 	
-	private Location loc;
+	//private Location loc;
 	
 	public Food(Location l)
 	{
@@ -18,7 +18,7 @@ public class Food extends Pickup implements Locatable
 		return super.location();
 	}
 	
-	public void move()
+	public void move(boolean eats)
 	{
 		//food doesnt move for now
 	}

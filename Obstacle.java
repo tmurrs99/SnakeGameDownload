@@ -18,16 +18,19 @@ public class Obstacle implements Locatable
 	{
 		yLength = 1;
 		xLength = 1;
+		locs = new ArrayList<Location>();
 		locs.add(new Location(0,0));
 	}
 	public Obstacle(Location l)
 	{
+		locs = new ArrayList<Location>();
 		locs.add(l);
 		yLength = 1;
 		xLength = 1;
 	}
 	public Obstacle(Location l, int y, int x)
 	{
+		locs = new ArrayList<Location>();
 		for(int i = 0; i < y; i++)
 		{
 			for(int j = 0; j < x; j++)
@@ -44,7 +47,7 @@ public class Obstacle implements Locatable
 		return locs;
 	}
 	
-	public void move()
+	public void move(boolean eats)
 	{
 		//obstacles dont move for now
 	}
