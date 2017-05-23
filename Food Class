@@ -16,4 +16,8 @@ public Food implements Locatable
 		return loc;
 	}
 	
+	public void move()
+	{
+		//Food doesnt move
+	}
 }
