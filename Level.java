@@ -82,7 +82,7 @@ public class Level
 					}
 					else if(entities.get(j) instanceof Food)
 					{
-						entities.get(i).grow();
+						entities.get(i).move(true);
 						foodEaten++;
 					}
 				}
