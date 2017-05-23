@@ -1,0 +1,5 @@
+I aDdeD a nEW meThOd iN ThE Locatable iNteRFaCe: public void move()
+ObJeCTs tHAt doNT mOvE juST wOnT hAve anY coDe. I tHinK iT wIlL bE eAsIEr tO dO tHE siMUlaTiOn sTuFf tHis wAY bEcAUsE wE cAn dO:
+// if we have: ArrayList<Locatable> theEntities
+for(int i = 0; i < theEntities.size(); i++)
+  theEntities.get(i).move();
