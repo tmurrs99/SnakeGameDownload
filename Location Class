@@ -32,7 +32,7 @@ public class Location
 			return 1;
 		else if(this.row() < other.row())
 			return -1;
-		else if(this.col() > other.row())
+		else if(this.col() > other.col())
 			return 1;
 		else if(this.col() < other.col())
 			return -1;
