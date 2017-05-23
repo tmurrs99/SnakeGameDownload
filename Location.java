@@ -42,7 +42,7 @@ public class Location
 	
 	public String toString()
 	{
-		return "Location (" + row() + "," + col() + ")";
+		return "Location (" + this.row() + "," + this.col() + ")";
 	}
 }
 
