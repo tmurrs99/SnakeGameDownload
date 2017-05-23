@@ -1,0 +1,19 @@
+fields:
+private int fireDelay; //The number of game tickes between fire
+private int count; // kepps track of ticks to see if it should fire
+private Location loc; //The location
+private ArrayList<Location> bullets; //tracks the bullets
+private ArrayList<Direction> dirs;
+
+constructors:
+Turret(Location l)
+
+Turret(Location l, ArrayList<Direction> d)
+
+methods:
+ArrayList<Location> location() //return the location
+
+void move() //checks if it hould fire, if so, fires. Also advances all of the bullets
+
+ArrayList<Direction> getDirections()
+
