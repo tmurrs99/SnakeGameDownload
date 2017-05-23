@@ -143,7 +143,7 @@ public class SnakeEnv extends SquareEnvironment
     public void add(Locatable obj)
     {
         // Check precondition.  Location should be empty.
-        Location loc = obj.location();
+        Location loc = obj.location().get(0);
         if ( ! isEmpty(loc) )
             throw new IllegalArgumentException("Location " + loc +
                                     " is not a valid empty location");
@@ -161,7 +161,7 @@ public class SnakeEnv extends SquareEnvironment
     public void remove(Locatable obj)
     {
         // Make sure that the object is there to remove.
-        Location loc = obj.location();
+        Location loc = obj.location().get(0);
         if ( objectAt(loc) != obj )
             throw new IllegalArgumentException("Cannot remove " + 
                                                obj + "; not there");
@@ -185,7 +185,7 @@ public class SnakeEnv extends SquareEnvironment
     public void recordMove(Locatable obj, Location oldLoc)
     {
         // Simplest case: There was no movement.
-        Location newLoc = obj.location();
+        Location newLoc = obj.location().get(0);
         if ( newLoc.equals(oldLoc) )
             return;
 
@@ -202,3 +202,4 @@ public class SnakeEnv extends SquareEnvironment
     }
 
 }
+

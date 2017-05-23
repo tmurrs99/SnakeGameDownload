@@ -1,3 +1,7 @@
+//Snake Game
+//Tyler Murray
+
+import java.util.ArrayList;
 import java.util.Random;
 
 public class SquareEnvironment
@@ -6,6 +10,11 @@ public class SquareEnvironment
 	private int numRows;
 	private int numCols;
 	
+	public SquareEnvironment()
+	{
+		numRows = 10;
+		numCols = 10;
+	}
 	public SquareEnvironment(int nR, int nC)
 	{
 		numRows = nR;
@@ -169,3 +178,5 @@ public class SquareEnvironment
 	}
 	
 }
+
+
