@@ -21,9 +21,7 @@ public class Location
 	
 	public boolean equals(Location other)
 	{
-		if(this.row() == other.row() && this.col() == other.col())
-			return true;
-		return false;
+		return this.row() == other.row() && this.col() == other.col();
 	}
 	
 	public int compareTo(Location other)
@@ -36,9 +34,20 @@ public class Location
 			return 1;
 		else if(this.col() < other.col())
 			return -1;
-		else
-			return 0;
+		return 0;
 	}
+	
+	public Location nextTo(Direction dir)
+	{
+		if(dir == Direction.NORTH)
+			return new Location(this.row()-1,this.col());
+		else if(dir == Direction.SOUTH)
+			return new Location(this.row()+1,this.col());
+		else if(dir == Direction.EAST)
+			return new Location(this.row(),this.col()+1);
+		else if(dir == Direction.WEST)
+			return new Location(this.row(),this.col()-1);
+		return null;
 	
 	public String toString()
 	{
