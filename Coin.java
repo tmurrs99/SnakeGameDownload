@@ -28,9 +28,9 @@ public class Coin extends Pickup implements Locatable
 		return super.location();
 	}
 	
-	public void move(boolean eats)
+	public Location move(boolean eats)
 	{
-		//coins dont move
+		return this.location();
 	}
 	
 }
