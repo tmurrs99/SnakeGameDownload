@@ -6,10 +6,22 @@ public abstract class Pickup implements Locatable
 {
 	
 	private Location loc;
+	private SnakeEnv theEnv;
+	
+	public Pickup()
+	{
+		loc = new Location(0,0);
+	}
 	
 	public Pickup(Location l)
 	{
 		loc = l;	
+	}
+	
+	public Pickup(Location l, SnakeEnv env)
+	{
+		loc = l;
+		theEnv = env;
 	}
 	
 	public ArrayList<Location> location()

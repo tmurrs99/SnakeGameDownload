@@ -3,6 +3,7 @@
 //Snake Game
 //Tyler Murray
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 public class Obstacle implements Locatable
@@ -45,6 +46,11 @@ public class Obstacle implements Locatable
 	public ArrayList<Location> location()
 	{
 		return locs;
+	}
+	
+	public Color color()
+	{
+		return Color.WHITE;
 	}
 	
 	public void move(boolean eats)

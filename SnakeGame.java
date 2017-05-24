@@ -2,6 +2,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+
 //Snake Game
 //Tyler Murray
 
@@ -13,6 +15,7 @@ public class SnakeGame extends JFrame
 	final static int COLS = 10;
 	final static int GRID_LENGTH = 500;
 	private static int score = 0;
+	private static ArrayList<Locatable> ent = new ArrayList<Locatable>();
 	
 	public SnakeGame()
 	{
@@ -21,26 +24,37 @@ public class SnakeGame extends JFrame
 	
 	public void paint(Graphics g)
 	{
-		
+		g.setColor(Color.DARK_GRAY);
+		g.fillRect(10, 0, 500, 490);
+		for(int i = 0; i < ent.size(); i++)
+		{
+			paintLoc(ent.get(i).location(), ent.get(i).color());
+		}
+		//do header with level, points info
 	}
 	
 	public static void main(String[] args)
 	{
 		
-		
 		SnakeEnv env = new SnakeEnv(ROWS, COLS);
 		Direction inputDir;
+		
+		SnakeGame w = new SnakeGame();
+		w.setSize(GRID_LENGTH, GRID_LENGTH);
+		w.show();
 		
 		//repeat this block for each level
 		/*start level block*/
 		ArrayList<Locatable> ent1 = new ArrayList<Locatable>();
-		ent1.add(new Snake(5,5));
+		ent1.add(new Snake(new Location(5,5)));
 		Level level1 = new Level(env, true, ent1, 10, score);
 		while(!level1.isOver())
 		{
 			//get user input
-			inputDir = //stuff
+			//inputDir = //stuff
 			level1.simStep(inputDir);
+			ent = level1.getEntities();
+			w.repaint();
 			//paint level
 		}
 		score += level1.getScore();

@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.util.ArrayList;
 
 //Snake Game
@@ -16,6 +17,11 @@ public class Food extends Pickup implements Locatable
 	public ArrayList<Location> location()
 	{
 		return super.location();
+	}
+	
+	public Color color()
+	{
+		return Color.MAGENTA;
 	}
 	
 	public void move(boolean eats)

@@ -94,7 +94,7 @@ public class Level
 					if(j == i);
 					else if((entities.get(j)) instanceof Obstacle || entities.get(j) instanceof Turret)
 					{
-						if(entities.get(i).location().equals(entities.get(j).location().adjacent(dir)))
+						if(entities.get(j).location().equals(entities.get(i).location().get(0).nextTo(dir)))
 						{
 							//Do the level failed animation
 							//Exit level
@@ -104,7 +104,7 @@ public class Level
 						}
 					}
 					else if(entities.get(j) instanceof Coin && 
-							entities.get(i).location().equals(entities.get(j).location().adjacent(dir)))
+							entities.get(j).location().equals(entities.get(i).location().get(0).nextTo(dir)))
 					{
 						score += 5;
 						theEnv.remove(entities.get(j));
@@ -113,14 +113,11 @@ public class Level
 						break;
 					}
 					else if(entities.get(j) instanceof Food &&
-							entities.get(i).location().equals(entities.get(j).location().adjacent(dir)))
+							entities.get(j).location().equals(entities.get(i).location().get(0).nextTo(dir)))
 					{
 						oldLoc = entities.get(i).location();
 						entities.get(i).move(true);
 						foodEaten++;
-						//Fix this to work with arraylists
-						theEnv.recordMove(entities.get(i), oldLoc)
-						theEnv.remove(entities.get(j));
 						entities.remove(j);
 						break;
 					}

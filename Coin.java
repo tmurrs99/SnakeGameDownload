@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.util.ArrayList;
 
 //Snake Game
@@ -8,14 +9,23 @@ public class Coin extends Pickup implements Locatable
 	
 	//private Location loc;
 	private SnakeEnv theEnv;
+	Location loc;
+	
+	public Coin()
+	{
+		super();
+	}
 	
 	public Coin(SnakeEnv env)
 	{
+		
+		theEnv = env;
 		do
 		{
-			Location l = new Location((int)Math.random(theEnv.));
-		}while(!theEnv.isEmpty(l));
-		super();
+			loc = new Location((int)Math.random()*theEnv.numRows(), (int)Math.random()*theEnv.numCols());
+		}while(!theEnv.isEmpty(loc));
+		
+		
 	}
 	
 	public Coin(SnakeEnv env, Location l)
@@ -25,12 +35,19 @@ public class Coin extends Pickup implements Locatable
 	
 	public ArrayList<Location> location()
 	{
-		return super.location();
+		ArrayList<Location> locs = new ArrayList<Location>();
+		locs.add(loc);
+		return locs;
+	}
+	
+	public Color color()
+	{
+		return Color.YELLOW;
 	}
 	
 	public void move(boolean eats)
 	{
-		return this.location();
+		
 	}
 	
 }
