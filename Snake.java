@@ -22,11 +22,23 @@ public class Snake
 		length = l;
 	}
 	
-	public void grow()
+	public void grow(Direction dir)
 	{
-		if(dir == Direction.EAST)
+		if(dir == Direction.NORTH)
 		{
-			locs.add(new Location(locs.get(locs.size()-1).row(),))
+			locs.add(new Location(locs.get(locs.size()-1).row()-1,locs.get(locs.size()-1).col());
+		}
+		else if(dir == Direction.SOUTH)
+		{
+			locs.add(new Location(locs.get(locs.size()-1).row()+1,locs.get(locs.size()-1).col());
+		}
+		else if(dir == Direction.EAST)
+		{
+			locs.add(new Location(locs.get(locs.size()-1).row(),locs.get(locs.size()-1).col()+1);
+		}
+		else if(dir == Direction.WEST)
+		{
+			locs.add(new Location(locs.get(locs.size()-1).row(),locs.get(locs.size()-1).col()-1);
 		}
 	}
 	
@@ -34,8 +46,12 @@ public class Snake
 	{
 		if(eats)
 		{
-			if()locs.add()
+			this.grow();
+			locs.add(locs.remove(0));
 		}
-		locs.add(locs.remove(locs.size-1));
+		else
+		{
+			locs.add(locs.remove(0));
+		}
 	}
 }
