@@ -42,7 +42,6 @@ public class Snake
 		}
 	}
 	
-	//Naheen i changed the return type of move()
 	public void move(boolean eats)
 	{
 		if(eats)
@@ -55,8 +54,4 @@ public class Snake
 			locs.add(locs.remove(0));
 		}
 	}
-	
-	public boolean eats()
-	{
-		if(locs.get(locs.size()-1) instanceOf 
 }
