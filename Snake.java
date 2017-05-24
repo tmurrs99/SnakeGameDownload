@@ -43,18 +43,16 @@ public class Snake
 	}
 	
 	//Naheen i changed the return type of move()
-	public ArrayList<Location> move(boolean eats)
+	public void move(boolean eats)
 	{
 		if(eats)
 		{
 			this.grow();
 			locs.add(locs.remove(0));
-			return this.location();
 		}
 		else
 		{
 			locs.add(locs.remove(0));
-			return this.location();
 		}
 	}
 	
