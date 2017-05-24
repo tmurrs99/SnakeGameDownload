@@ -77,6 +77,7 @@ public class Level
 	
 	public void simStep(Direction dir)
 	{
+		ArrayList<Location> oldLoc = new ArrayList<Location>();
 		for(int i = 0; i < entities.size(); i++)
 		{	
 			
@@ -108,8 +109,11 @@ public class Level
 					else if(entities.get(j) instanceof Food &&
 							entities.get(i).location().equals(entities.get(j).location().adjacent(dir)))
 					{
+						oldLoc = entities.get(i).location();
 						entities.get(i).move(true);
 						foodEaten++;
+						//Fix this to work with arraylists
+						theEnv.recordMove(entities.get(i), oldLoc)
 						theEnv.remove(entities.get(j));
 						entities.remove(j);
 						break;
