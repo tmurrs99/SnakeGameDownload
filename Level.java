@@ -75,6 +75,11 @@ public class Level
 		return score;
 	}
 	
+	public ArrayList<Locatable> getEntities()
+	{
+		return entities;
+	}
+	
 	public void simStep(Direction dir)
 	{
 		ArrayList<Location> oldLoc = new ArrayList<Location>();
