@@ -13,9 +13,9 @@ public class Coin extends Pickup implements Locatable
 	{
 		do
 		{
-			Location l = new Location((int)Math.random(theEnv.))
-		}while(!theEnv.isEmpty(l))
-		super
+			Location l = new Location((int)Math.random(theEnv.));
+		}while(!theEnv.isEmpty(l));
+		super();
 	}
 	
 	public Coin(SnakeEnv env, Location l)
