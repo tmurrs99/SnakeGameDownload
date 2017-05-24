@@ -1,17 +1,33 @@
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 
 //Snake Game
 //Tyler Murray
 
 
-public class SnakeGame
+public class SnakeGame extends JFrame
 {
+	
+	final static int ROWS = 10;
+	final static int COLS = 10;
+	final static int GRID_LENGTH = 500;
+	private static int score = 0;
+	
+	public SnakeGame()
+	{
+		super("Snake on 'Roids");
+	}
+	
+	public void paint(Graphics g)
+	{
+		
+	}
 	
 	public static void main(String[] args)
 	{
-		int score = 0;
-		final int ROWS = 10;
-		final int COLS = 10;
+		
+		
 		SnakeEnv env = new SnakeEnv(ROWS, COLS);
 		Direction inputDir;
 		
@@ -39,6 +55,15 @@ public class SnakeGame
 		/*end level block*/
 		
 		
+	}
+	
+	public void paintLoc(Location loc, Graphics gr, Color c)
+	{
+		int x1 = (int)loc.col()*(GRID_LENGTH/COLS);
+		int y1 = (int)loc.row()*(GRID_LENGTH/ROWS);
+		
+		gr.setColor(c);
+		gr.fillRect(x1, y1, (GRID_LENGTH/COLS), (GRID_LENGTH/COLS));
 	}
 	
 	
