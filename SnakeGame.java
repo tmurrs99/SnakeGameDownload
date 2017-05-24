@@ -14,6 +14,7 @@ public class SnakeGame extends JFrame
 	final static int ROWS = 10;
 	final static int COLS = 10;
 	final static int GRID_LENGTH = 500;
+	Color BACK = new Color(0x636562);
 	private static int score = 0;
 	private static ArrayList<Locatable> ent = new ArrayList<Locatable>();
 	
@@ -24,11 +25,14 @@ public class SnakeGame extends JFrame
 	
 	public void paint(Graphics g)
 	{
-		g.setColor(Color.DARK_GRAY);
+		g.setColor(BACK);
 		g.fillRect(10, 0, 500, 490);
 		for(int i = 0; i < ent.size(); i++)
 		{
-			paintLoc(ent.get(i).location(), ent.get(i).color());
+			for(int j = 0; j < ent.get(i).location().size(); j++)
+			{
+				paintLoc(ent.get(i).location().get(j), g, ent.get(i).color());
+			}
 		}
 		//do header with level, points info
 	}

@@ -21,7 +21,7 @@ public class Food extends Pickup implements Locatable
 	
 	public Color color()
 	{
-		return Color.MAGENTA;
+		return new Color(0x58097E);
 	}
 	
 	public void move(boolean eats)
