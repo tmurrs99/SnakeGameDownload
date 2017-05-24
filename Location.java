@@ -48,6 +48,7 @@ public class Location
 		else if(dir == Direction.WEST)
 			return new Location(this.row(),this.col()-1);
 		return null;
+	}
 	
 	public String toString()
 	{
