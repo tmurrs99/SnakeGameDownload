@@ -18,9 +18,9 @@ public class Food extends Pickup implements Locatable
 		return super.location();
 	}
 	
-	public Location move(boolean eats)
+	public void move(boolean eats)
 	{
-		return this.location();
+		
 	}
 	
 }
