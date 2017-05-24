@@ -109,6 +109,7 @@ public class Level
 						score += 5;
 						theEnv.remove(entities.get(j));
 						entities.remove(j);
+						entities.get(i).move(false);
 						break;
 					}
 					else if(entities.get(j) instanceof Food &&
