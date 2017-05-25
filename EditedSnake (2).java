@@ -1,7 +1,6 @@
 import java.awt.Color;
 import java.util.ArrayList;
 
-//Snake
 
 public class Snake implements Locatable
 {
@@ -43,6 +42,7 @@ public class Snake implements Locatable
 		return new Color(0x0000E1);
 	}
 	
+	/*
 	public void grow(Direction dir)
 	{
 		if(dir == Direction.NORTH)
@@ -62,34 +62,19 @@ public class Snake implements Locatable
 			locs.add(new Location(locs.get(locs.size()-1).row(),locs.get(locs.size()-1).col()-1));
 		}
 	}
+	*/
 	
 	
 	public void move(boolean eats)
 	{
 		if(eats)
 		{
-			//this.grow();
-			locs.add(locs.remove(0));
-			//Dont want to change your code but idk if this will work
-			//try:
-			/*
-			 * locs.add(0, new Location(locs.get(0).nextTo(dir)));
-			 * 
-			 */
+			locs.add(0, new Location(locs.get(0).nextTo(dir)));
 		}
 		else
 		{
-			locs.add(locs.remove(0));
-			/*
-			 * loc.remove(locs.size()-1);
-			 * locs.add(0, new Location(locs.get(0).nextTo(dir)));
-			 * 
-			 */
+			locs.remove(locs.size()-1);
+			locs.add(0, new Location(locs.get(0).nextTo(dir)));
 		}
 	}
-	
-	/*public boolean eats()
-	{
-		if(locs.get(locs.size()-1) instanceOf 
-		*/
 }
