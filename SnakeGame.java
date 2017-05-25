@@ -25,7 +25,7 @@ public class SnakeGame extends JFrame
 	
 	public void paint(Graphics g)
 	{
-		g.setColor(BACK);
+		g.setColor(BLACK);
 		g.fillRect(10, 0, 500, 490);
 		for(int i = 0; i < ent.size(); i++)
 		{
