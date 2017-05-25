@@ -5,6 +5,8 @@ private Location loc; //The location
 private ArrayList<Location> bullets; //tracks the bullets
 private ArrayList<Direction> dirs;
 
+MAke possibel to shoot in a random direction each fire
+
 constructors:
 Turret()
 
