@@ -1,6 +1,6 @@
 fields:
 private int fireDelay; //The number of game tickes between fire
-private int count; // kepps track of ticks to see if it should fire
+private int count; // keeps track of ticks to see if it should fire
 private Location loc; //The location
 private ArrayList<Location> bullets; //tracks the bullets
 private ArrayList<Direction> dirs;
