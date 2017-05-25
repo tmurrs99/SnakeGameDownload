@@ -50,7 +50,7 @@ public class Obstacle implements Locatable
 	
 	public Color color()
 	{
-		return new Color(0xCEFE10);
+		return new Color(0xFAFAFA);
 	}
 	
 	public void move(boolean eats)

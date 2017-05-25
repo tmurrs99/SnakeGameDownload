@@ -42,7 +42,7 @@ public class Coin extends Pickup implements Locatable
 	
 	public Color color()
 	{
-		return Color.YELLOW;
+		return new Color(0xFFD900);
 	}
 	
 	public void move(boolean eats)
