@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -21,6 +22,8 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 	final static int GRID_LENGTH = 500;
 	final static int k = GRID_LENGTH/ROWS;
 	Color BACK = new Color(0x636562);
+	private static boolean gameOver;
+	private static boolean success = false;
 	private static int score = 0;
 	private static ArrayList<Locatable> ent = new ArrayList<Locatable>();
 	private static boolean titleScreen = true;
@@ -41,6 +44,14 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 		{
 			paintTitle(g);
 			for(long i = 0; i < 100000000; i++);
+		}
+		else if(success )
+		{
+			paintLvlSuccess(g);
+		}
+		else if(gameOver)
+		{
+			paintGameOver(g);
 		}
 		else
 		{
@@ -90,6 +101,7 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 			w.repaint();
 		}
 		titleScreen = false;
+		
 		//repeat this block for each level
 		/*start level block*/
 		ArrayList<Locatable> ent1 = new ArrayList<Locatable>();
@@ -115,13 +127,16 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 		score += level1.getScore();
 		if(level1.won())
 		{
-			
+			success = true;
 		}
 		else
 		{
-			
+			gameOver = true;
 		}
+		delay(2000);
+		success = false;
 		/*end level block*/
+		
 		
 		
 	}
@@ -184,7 +199,26 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 		
 		
 	}
-
+	
+	public void paintLvlSuccess(Graphics g)
+	{
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, GRID_LENGTH+100, GRID_LENGTH+100);
+		g.setFont(new Font("Courier", Font.PLAIN, 36)); 
+		g.setColor(Color.WHITE);
+		g.drawString("Level Success!!!", 200, 300);
+	}
+	
+	public void paintGameOver(Graphics g)
+	{
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, GRID_LENGTH+100, GRID_LENGTH+100);
+		g.setFont(new Font("Courier", Font.PLAIN, 36));
+		g.setColor(Color.WHITE);
+		g.drawString("gAme ovER", 200, 300);
+		g.drawString("Final Score: " +score, 200, 400);
+	}
+	
 	public static void delay(int MS)
 	{
 		try 

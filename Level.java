@@ -10,7 +10,7 @@ public class Level
 	private int clock = 0;
 	private int foodEaten = 0;
 	private int foodRequired;
-	private boolean over;
+	private boolean over = false;
 	private boolean won = false;
 	private int score;
 	//private Location[] foods;
@@ -109,6 +109,7 @@ public class Level
 				//LevelComplete
 				over = true;
 				won = true;
+				return;
 			}
 		}
 		else if(adj instanceof Coin)
