@@ -30,7 +30,7 @@ public class SnakePart implements Locatable
 	@Override
 	public Color color() {
 		// TODO Auto-generated method stub
-		return null;
+		return new Color(0x0000E1);
 	}
 
 	@Override

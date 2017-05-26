@@ -54,11 +54,9 @@ public class Level
 			entities.add(initEnt.get(i));
 			//theEnv.add(initEnt.get(i));
 		}
-		/*for(int i = 0; i < foodR; i++)
-		{
-			foods = new Location[foodR];
-			foods[i] = new Location((int)(Math.random()*env.getRows()), ((int)Math.random()*env.getCols()));
-		}*/
+		
+		entities.add(new Coin(theEnv));
+		
 	}
 	
 	public int getClock()

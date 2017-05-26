@@ -59,7 +59,7 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 			g.setColor(Color.WHITE);
 			g.drawString("Level: " +currLvl, 60, 575);
 			g.drawString("Food Eaten: " +theLvl.getFoodEaten() +"/" +theLvl.getFoodReq(), 140, 575);
-			g.drawString("Points: " +theLvl.getScore() +", total= " +score, 250, 575);
+			g.drawString("Points: " +theLvl.getScore() +", prev. total= " +score, 250, 575);
 			
 			for(int i = 0; i < ent.size(); i++)
 			{
@@ -97,6 +97,7 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 		theEnv.add(new SnakePart(theEnv, new Location(10,10)));
 		ent1.add(player);
 		ent1.add(new Food(theEnv, new Location(20, 20)));
+		//ent1.add(new Coin(theEnv));
 		Level level1 = new Level(theEnv, true, ent1, 10, score);
 		
 		while(!level1.isOver())
@@ -107,7 +108,7 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 			level1.simStep(inputDir, player);
 			ent = level1.getEntities();
 			w.repaint();
-			System.out.println(ent.get(ent.size()-1).location().get(0).toString());
+			//System.out.println(ent.get(ent.size()-1).location().get(0).toString());
 			//paint level
 			delay(200);
 		}

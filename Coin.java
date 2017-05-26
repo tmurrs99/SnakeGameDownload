@@ -17,7 +17,7 @@ public class Coin extends Pickup implements Locatable
 		theEnv = env;
 		do
 		{
-			loc = new Location((int)Math.random()*theEnv.numRows(), (int)Math.random()*theEnv.numCols());
+			loc = new Location((int)(Math.random()*theEnv.numRows()), (int)(Math.random()*theEnv.numCols()));
 		}while(!theEnv.isEmpty(loc));
 		theEnv.add(this);
 		
@@ -26,6 +26,7 @@ public class Coin extends Pickup implements Locatable
 	
 	public Coin(SnakeEnv env, Location l)
 	{
+		//dont use this
 		super(l);	
 	}
 	
@@ -63,8 +64,9 @@ public class Coin extends Pickup implements Locatable
 		{
 			l = new Location((int)(Math.random()*theEnv.getRows()), (int)(Math.random()*theEnv.getCols()));
 		}while(!theEnv.isEmpty(l));
-		theEnv.recordMove(this, loc);
+		Location oldLoc = loc;
 		loc = l;
+		theEnv.recordMove(this, oldLoc);
 	}
 	
 }
