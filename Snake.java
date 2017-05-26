@@ -17,6 +17,7 @@ public class Snake implements Locatable
 	
 	public Snake(ArrayList<Location> loc, int l)
 	{
+		locs = new ArrayList<Location>();
 		locs = loc;
 		for(int i = 0; i < l; i++)
 		{
@@ -42,6 +43,15 @@ public class Snake implements Locatable
 		return new Color(0x0000E1);
 	}
 	
+	public void setDirection(Direction d)
+	{
+		dir = d;
+	}
+	
+	public String toString()
+	{
+		return "Snake";
+	}
 	/*
 	public void grow(Direction dir)
 	{
@@ -69,12 +79,13 @@ public class Snake implements Locatable
 	{
 		if(eats)
 		{
-			locs.add(0, new Location(locs.get(0).nextTo(dir)));
+			locs.add(0, new Location(locs.get(0).nextTo(dir).row(), locs.get(0).nextTo(dir).col()));
 		}
 		else
 		{
+			locs.add(0, new Location(locs.get(0).nextTo(dir).row(), locs.get(0).nextTo(dir).col()));
 			locs.remove(locs.size()-1);
-			locs.add(0, new Location(locs.get(0).nextTo(dir)));
+			
 		}
 	}
 }

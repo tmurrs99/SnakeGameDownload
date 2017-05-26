@@ -48,6 +48,16 @@ public class Obstacle implements Locatable
 		return locs;
 	}
 	
+	public void setDirection(Direction d)
+	{
+		
+	}
+	
+	public String toString()
+	{
+		return "Obstacle";
+	}
+	
 	public Color color()
 	{
 		return new Color(0xFAFAFA);

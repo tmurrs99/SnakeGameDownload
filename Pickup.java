@@ -34,6 +34,16 @@ public abstract class Pickup implements Locatable
 	{
 		
 	}
+	
+	public void setDirection(Direction d)
+	{
+		
+	}
+	
+	public String toString()
+	{
+		return "";
+	}
 		
 	
 }

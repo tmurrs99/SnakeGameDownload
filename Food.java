@@ -24,6 +24,16 @@ public class Food extends Pickup implements Locatable
 		return new Color(0x58097E);
 	}
 	
+	public void setDirection(Direction d)
+	{
+		
+	}
+	
+	public String toString()
+	{
+		return "Food";
+	}
+	
 	public void move(boolean eats)
 	{
 		

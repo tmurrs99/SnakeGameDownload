@@ -9,4 +9,8 @@ public interface Locatable
 	public void move(boolean eats);
 	
 	public Color color();
+	
+	public void setDirection(Direction d);
+	
+	public String toString();
 }

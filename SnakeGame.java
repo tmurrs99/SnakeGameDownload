@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFrame;
 
@@ -24,11 +25,13 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 	private static ArrayList<Locatable> ent = new ArrayList<Locatable>();
 	private static boolean titleScreen = true;
 	public static boolean spacePress = false;
-	private static Direction inputDir;
+	private static Direction inputDir = Direction.NORTH;
+	private static int currLvl;
+	private static Level theLvl;
 	
 	public SnakeGame()
 	{
-		super("Snake on 'Roids");
+		super("Snake++");
 		addKeyListener(this);
 	}
 	
@@ -41,16 +44,32 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 		}
 		else
 		{
+			g.setColor(Color.BLACK);
+			g.fillRect(0, 0, GRID_LENGTH+100, GRID_LENGTH+100);
 			g.setColor(BACK);
-			g.fillRect(10, 0, 500, 490);
+			g.fillRect(50, 50, 500, 500);
+			
+			g.setColor(Color.DARK_GRAY);
+			g.fillRect(50, 550, 500, 50);
+			g.setColor(BACK);
+			g.fillRect(50, 550, 500, 5);
+			g.fillRect(50, 45, 500, 5);
+			g.fillRect(45, 45, 5, 510);
+			g.fillRect(550, 45, 5, 510);
+			g.setColor(Color.WHITE);
+			g.drawString("Level: " +currLvl, 60, 575);
+			g.drawString("Food Eaten: " +theLvl.getFoodEaten() +"/" +theLvl.getFoodReq(), 140, 575);
+			g.drawString("Points: " +theLvl.getScore() +", total= " +score, 250, 575);
+			
 			for(int i = 0; i < ent.size(); i++)
 			{
 				for(int j = 0; j < ent.get(i).location().size(); j++)
 				{
 					paintLoc(ent.get(i).location().get(j), g, ent.get(i).color());
+					
 				}
+				System.out.println(ent.get(i).location().get(0).toString());
 			}
-			for(long i = 0; i < 10000000; i++);
 			//do header with level, points info
 		}
 	}
@@ -61,27 +80,33 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 		SnakeEnv env = new SnakeEnv(ROWS, COLS);
 		
 		SnakeGame w = new SnakeGame();
-		w.setSize(GRID_LENGTH, GRID_LENGTH);
+		w.setSize(GRID_LENGTH+100, GRID_LENGTH +100);
 		w.show();
+		
+		
 		
 		while(!spacePress)
 		{
 			w.repaint();
 		}
-		
+		titleScreen = false;
 		//repeat this block for each level
 		/*start level block*/
 		ArrayList<Locatable> ent1 = new ArrayList<Locatable>();
-		ent1.add(new Snake(new Location(5,5)));
+		ent1.add(new Snake(new Location(10,10)));
 		Level level1 = new Level(env, true, ent1, 10, score);
+		
 		while(!level1.isOver())
 		{
-			//get user input
-			//inputDir = //stuff
+			theLvl = level1;
+			currLvl = 1;
+			System.out.println(inputDir.toString());
 			level1.simStep(inputDir);
 			ent = level1.getEntities();
 			w.repaint();
+			System.out.println(ent.get(ent.size()-1).location().get(0).toString());
 			//paint level
+			delay(1000);
 		}
 		score += level1.getScore();
 		if(level1.won())
@@ -99,8 +124,8 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 	
 	public void paintLoc(Location loc, Graphics gr, Color c)
 	{
-		int x1 = (int)loc.col()*(GRID_LENGTH/COLS);
-		int y1 = (int)loc.row()*(GRID_LENGTH/ROWS);
+		int x1 = (int)loc.col()*(GRID_LENGTH/COLS)+50;
+		int y1 = (int)loc.row()*(GRID_LENGTH/ROWS)+50;
 		
 		gr.setColor(c);
 		gr.fillRect(x1, y1, (GRID_LENGTH/COLS), (GRID_LENGTH/COLS));
@@ -110,7 +135,7 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 	public void paintTitle(Graphics g)
 	{
 		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, GRID_LENGTH, GRID_LENGTH);
+		g.fillRect(0, 0, GRID_LENGTH+100, GRID_LENGTH+100);
 		
 		Color c = new Color(0x0000E1);
 		g.setColor(c);
@@ -133,6 +158,7 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 		g.fillRect(10*k, 4*k, k, 2*k);
 		g.fillRect(11*k, 6*k, k, 2*k);
 		g.fillRect(12*k, 8*k, k, 2*k);
+		g.drawString("(Press SpaceBar to begin)", 250, 450);
 		
 		g.setColor(Color.BLACK);
 		g.fillRect(3*k, 4*k, 3*k, 2*k);
@@ -152,11 +178,21 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 		g.fillRect(9*k, 15*k, 3*k, 2*k);
 		g.fillRect(10*k, 14*k, 2*k, k);
 		
-		g.drawString("(Press the Spacebar)", 8*k, 20*k);
-		System.out.println("yo");
 		
 	}
 
+	public static void delay(int MS)
+	{
+		try 
+		{
+			TimeUnit.MILLISECONDS.sleep(MS);
+		} 
+		catch (InterruptedException e) 
+		{
+			e.printStackTrace();
+		}
+	}
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub

@@ -16,25 +16,28 @@ public class Level
 	
 	public Level(SnakeEnv env)
 	{
+		entities = new ArrayList<Locatable>();
 		theEnv = env;
 	}
 	public Level(SnakeEnv env, boolean bounded)
 	{
+		entities = new ArrayList<Locatable>();
 		theEnv = env;
 		if(bounded)
 		{
 			for(int i = 0; i < theEnv.numRows(); i++)
 				entities.add(new Obstacle(new Location(0, i)));
-			for(int i = theEnv.numCols()-1; i < theEnv.numRows(); i++)
+			for(int i = 1; i < theEnv.numRows()-1; i++)
 				entities.add(new Obstacle(new Location(theEnv.numCols()-1, i)));
-			for(int i = 1; i < theEnv.numCols()-1; i++)
+			for(int i = 1; i < theEnv.numCols(); i++)
 				entities.add(new Obstacle(new Location(i, 0)));
-			for(int i = theEnv.numRows()-1; i < theEnv.numCols()-1; i++)
+			for(int i = 0; i < theEnv.numCols(); i++)
 				entities.add(new Obstacle(new Location(i, theEnv.numRows()-1)));
 		}
 	}
 	public Level(SnakeEnv env, boolean bounded, ArrayList<Locatable> initEnt, int foodR, int s)
 	{
+		entities = new ArrayList<Locatable>();
 		theEnv = env;
 		foodRequired = foodR;
 		score = s;
@@ -42,11 +45,11 @@ public class Level
 		{
 			for(int i = 0; i < theEnv.numRows(); i++)
 				entities.add(new Obstacle(new Location(0, i)));
-			for(int i = theEnv.numCols()-1; i < theEnv.numRows(); i++)
+			for(int i = 1; i < theEnv.numRows()-1; i++)
 				entities.add(new Obstacle(new Location(theEnv.numCols()-1, i)));
-			for(int i = 1; i < theEnv.numCols()-1; i++)
+			for(int i = 1; i < theEnv.numCols(); i++)
 				entities.add(new Obstacle(new Location(i, 0)));
-			for(int i = theEnv.numRows()-1; i < theEnv.numCols()-1; i++)
+			for(int i = 0; i < theEnv.numCols(); i++)
 				entities.add(new Obstacle(new Location(i, theEnv.numRows()-1)));
 		}
 		for(int i = 0; i < initEnt.size(); i++)
@@ -75,6 +78,16 @@ public class Level
 		return score;
 	}
 	
+	public int getFoodEaten()
+	{
+		return foodEaten;
+	}
+	
+	public int getFoodReq()
+	{
+		return foodRequired;
+	}
+	
 	public ArrayList<Locatable> getEntities()
 	{
 		return entities;
@@ -89,6 +102,7 @@ public class Level
 			//check if the snake collides with an enemy and should die or eats food
 			if(entities.get(i) instanceof Snake)
 			{
+				entities.get(i).setDirection(dir);
 				for(int j = 0; j < entities.size(); j++)
 				{
 					if(j == i);

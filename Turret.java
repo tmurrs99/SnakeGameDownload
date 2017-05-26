@@ -1,5 +1,5 @@
-//Snake Game
-//"Jesse"
+import java.awt.Color;
+import java.util.ArrayList;
 
 public class Turret implements Locatable
 {
@@ -46,23 +46,33 @@ public class Turret implements Locatable
 			}
 			else
 			{
-				bullets.get(i) = new Location(bullets.get(i).nextTo(dir));
+				bullets.set(i, new Location((bullets.get(i).nextTo(dir)).row(), (bullets.get(i).nextTo(dir)).col()));
 			}	
 		}
 		if(count == fireDelay)
 		{
-			bullets.add(new Location(center.nextTo(dir)));	
+			bullets.add(new Location(center.nextTo(dir).row(), center.nextTo(dir).col()));	
 		}
+	}
+	
+	public void setDirection(Direction d)
+	{
+		
 	}
 	
 	public Color color()
 	{
-			
+		return new Color(0xFF5F00);
 	}
 	
 	public ArrayList<Location> getBullets()
 	{
 		return bullets;
+	}
+	
+	public String toString()
+	{
+		return "Turret";
 	}
 	
 	public Direction getDirection()

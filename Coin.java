@@ -45,6 +45,16 @@ public class Coin extends Pickup implements Locatable
 		return new Color(0xFFD900);
 	}
 	
+	public void setDirection(Direction d)
+	{
+		
+	}
+	
+	public String toString()
+	{
+		return "Coin";
+	}
+	
 	public void move(boolean eats)
 	{
 		
