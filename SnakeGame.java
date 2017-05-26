@@ -77,7 +77,7 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 	public static void main(String[] args)
 	{
 		
-		SnakeEnv env = new SnakeEnv(ROWS, COLS);
+		SnakeEnv theEnv = new SnakeEnv(ROWS, COLS);
 		
 		SnakeGame w = new SnakeGame();
 		w.setSize(GRID_LENGTH+100, GRID_LENGTH +100);
@@ -93,16 +93,18 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 		//repeat this block for each level
 		/*start level block*/
 		ArrayList<Locatable> ent1 = new ArrayList<Locatable>();
-		ent1.add(new Snake(new Location(10,10)));
-		ent1.add(new Food(new Location(20, 20)));
-		Level level1 = new Level(env, true, ent1, 10, score);
+		Snake player = new Snake(theEnv, new Location(10,10));
+		theEnv.add(new SnakePart(theEnv, new Location(10,10)));
+		ent1.add(player);
+		ent1.add(new Food(theEnv, new Location(20, 20)));
+		Level level1 = new Level(theEnv, true, ent1, 10, score);
 		
 		while(!level1.isOver())
 		{
 			theLvl = level1;
 			currLvl = 1;
 			System.out.println(inputDir.toString());
-			level1.simStep(inputDir);
+			level1.simStep(inputDir, player);
 			ent = level1.getEntities();
 			w.repaint();
 			System.out.println(ent.get(ent.size()-1).location().get(0).toString());

@@ -5,26 +5,21 @@ public class Turret implements Locatable
 {
 	private Direction dir;
 	private int fireDelay;
-	private ArrayList<Location> bullets;
+	private ArrayList<Bullet> bullets;
 	private Location center;
 	private int count = 0;
 	private SnakeEnv theEnv;
 	
 	
-	public Turret()
-	{
-		center = new Location(0,0);
-		fireDelay = 5;
-		bullets = new ArrayList<Location>();
-		dir = Direction.NORTH;
-	}
+
 	public Turret(Location loc, Direction d, int fd, SnakeEnv env)
 	{
 		center = loc;
 		fireDelay = fd;
-		bullets = new ArrayList<Location>();
+		bullets = new ArrayList<Bullet>();
 		dir = d;
 		theEnv = env;
+		theEnv.add(this);
 	}
 	
 	public ArrayList<Location> location()
@@ -39,25 +34,27 @@ public class Turret implements Locatable
 			
 		for(int i  = 0; i < bullets.size(); i++)
 		{
-			if(bullets.get(i).nextTo(dir).row() >= theEnv.numRows() || bullets.get(i).nextTo(dir).col() >= theEnv.numCols()
-				|| bullets.get(i).nextTo(dir).row() < 0 || bullets.get(i).nextTo(dir).col() < 0)
+			if(bullets.get(i).location().get(0).nextTo(dir).row() >= theEnv.numRows() || bullets.get(i).location().get(0).nextTo(dir).col() >= theEnv.numCols()
+				|| bullets.get(i).location().get(0).nextTo(dir).row() < 0 || bullets.get(i).location().get(0).nextTo(dir).col() < 0)
 			{	
+				theEnv.remove(bullets.get(i));
 				bullets.remove(i);
 			}
 			else
 			{
-				bullets.set(i, new Location((bullets.get(i).nextTo(dir)).row(), (bullets.get(i).nextTo(dir)).col()));
+				//bullets.set(i, new Location((bullets.get(i).nextTo(dir)).row(), (bullets.get(i).nextTo(dir)).col()));
+				bullets.get(i).move(false);
 			}	
 		}
 		if(count == fireDelay)
 		{
-			bullets.add(new Location(center.nextTo(dir).row(), center.nextTo(dir).col()));	
+			bullets.add(new Bullet(theEnv, new Location(center.nextTo(dir).row(), center.nextTo(dir).col()), dir));	
 		}
 	}
 	
 	public void setDirection(Direction d)
 	{
-		
+		dir = d;
 	}
 	
 	public Color color()
@@ -65,7 +62,7 @@ public class Turret implements Locatable
 		return new Color(0xFF5F00);
 	}
 	
-	public ArrayList<Location> getBullets()
+	public ArrayList<Bullet> getBullets()
 	{
 		return bullets;
 	}

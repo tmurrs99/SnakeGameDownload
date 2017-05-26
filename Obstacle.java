@@ -12,40 +12,42 @@ public class Obstacle implements Locatable
 	private ArrayList<Location> locs;
 	private int yLength;
 	private int xLength;
+	private SnakeEnv theEnv;
 	
 	
-	
-	public Obstacle()
-	{
-		yLength = 1;
-		xLength = 1;
-		locs = new ArrayList<Location>();
-		locs.add(new Location(0,0));
-	}
-	public Obstacle(Location l)
+	public Obstacle(SnakeEnv env, Location l)
 	{
 		locs = new ArrayList<Location>();
 		locs.add(l);
 		yLength = 1;
 		xLength = 1;
+		theEnv = env;
 	}
-	public Obstacle(Location l, int y, int x)
+	public Obstacle(SnakeEnv env, Location l, int y, int x)
 	{
 		locs = new ArrayList<Location>();
+		theEnv = env;
 		for(int i = 0; i < y; i++)
 		{
 			for(int j = 0; j < x; j++)
 			{
 				locs.add(new Location(l.row()+i, l.col()+j));
+				theEnv.add(new Obstacle(env, locs.get(i)));
 			}
 		}
 		yLength = y;
 		xLength = x;
+		
 	}
 	
 	public ArrayList<Location> location()
 	{
 		return locs;
+	}
+	
+	public Direction getDirection()
+	{
+		return null;
 	}
 	
 	public void setDirection(Direction d)
@@ -78,16 +80,7 @@ public class Obstacle implements Locatable
 		return xLength;
 	}
 	
-	//Dont know if we need this
-	public boolean isOccupied(Location other)
-	{
-		for(Location loc : locs)
-		{
-			if(other.equals(loc))
-				return true;
-		}
-		return false;
-	}
+	
 	
 	
 }

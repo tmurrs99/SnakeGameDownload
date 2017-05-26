@@ -13,4 +13,6 @@ public interface Locatable
 	public void setDirection(Direction d);
 	
 	public String toString();
+	
+	public Direction getDirection();
 }

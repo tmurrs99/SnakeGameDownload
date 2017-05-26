@@ -151,6 +151,7 @@ public class SnakeEnv extends SquareEnvironment
         // Add object to the environment.
         theGrid[loc.row()][loc.col()] = obj;
         objectCount++;
+        System.out.println("" +obj.toString() +" added at " +loc.toString());
     }
 
     /** Removes the object from this environment.
@@ -170,6 +171,19 @@ public class SnakeEnv extends SquareEnvironment
         theGrid[loc.row()][loc.col()] = null;
         objectCount--;
     }
+    
+    /*public void snakeRemove(Locatable obj, int l)
+    {
+    	// Make sure that the object is there to remove.
+        Location loc = obj.location().get(obj.location().size()-1);
+        if ( objectAt(loc) != obj )
+            throw new IllegalArgumentException("Cannot remove " + 
+                                               obj + "; not there");
+
+        // Remove the object from the grid.
+        theGrid[loc.row()][loc.col()] = null;
+        objectCount--;
+    }*/
 
     /** Updates this environment to reflect the fact that an object moved.
      *  (Precondition: <code>obj.location()</code> is a valid location

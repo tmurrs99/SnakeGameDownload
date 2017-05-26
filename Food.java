@@ -7,16 +7,21 @@ import java.util.ArrayList;
 public class Food extends Pickup implements Locatable
 {
 	
-	//private Location loc;
+	private Location loc;
+	private SnakeEnv theEnv;
 	
-	public Food(Location l)
+	public Food(SnakeEnv env, Location l)
 	{
-		super(l);	
+		loc = l;	
+		theEnv = env;
+		theEnv.add(this);
 	}
 	
 	public ArrayList<Location> location()
 	{
-		return super.location();
+		ArrayList<Location> locs = new ArrayList<Location>();
+		locs.add(loc);
+		return locs;
 	}
 	
 	public Color color()
@@ -29,6 +34,11 @@ public class Food extends Pickup implements Locatable
 		
 	}
 	
+	public Direction getDirection()
+	{
+		return null;
+	}
+	
 	public String toString()
 	{
 		return "Food";
@@ -36,7 +46,14 @@ public class Food extends Pickup implements Locatable
 	
 	public void move(boolean eats)
 	{
-		
+		Location l;
+		do
+		{
+			l = new Location((int)(Math.random()*theEnv.getRows()), (int)(Math.random()*theEnv.getCols()));
+		}while(!theEnv.isEmpty(l));
+		Location oldLoc = loc;
+		loc = l;
+		theEnv.recordMove(this, oldLoc);
 	}
 	
 }

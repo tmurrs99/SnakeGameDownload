@@ -29,18 +29,30 @@ public class Level
 		if(bounded)
 		{
 			for(int i = 0; i < theEnv.numRows(); i++)
-				entities.add(new Obstacle(new Location(0, i)));
+			{
+				entities.add(new Obstacle(theEnv, new Location(0, i)));
+				theEnv.add(entities.get(entities.size()-1));
+			}
 			for(int i = 1; i < theEnv.numRows()-1; i++)
-				entities.add(new Obstacle(new Location(theEnv.numCols()-1, i)));
+			{
+				entities.add(new Obstacle(theEnv, new Location(theEnv.numCols()-1, i)));
+				theEnv.add(entities.get(entities.size()-1));
+			}
 			for(int i = 1; i < theEnv.numCols(); i++)
-				entities.add(new Obstacle(new Location(i, 0)));
-			for(int i = 0; i < theEnv.numCols(); i++)
-				entities.add(new Obstacle(new Location(i, theEnv.numRows()-1)));
+			{
+				entities.add(new Obstacle(theEnv, new Location(i, 0)));
+				theEnv.add(entities.get(entities.size()-1));
+			}
+			for(int i = 1; i < theEnv.numCols(); i++)
+			{
+				entities.add(new Obstacle(theEnv, new Location(i, theEnv.numRows()-1)));
+				theEnv.add(entities.get(entities.size()-1));
+			}
 		}
 		for(int i = 0; i < initEnt.size(); i++)
 		{
 			entities.add(initEnt.get(i));
-			theEnv.add(initEnt.get(i));
+			//theEnv.add(initEnt.get(i));
 		}
 		/*for(int i = 0; i < foodR; i++)
 		{
@@ -85,9 +97,55 @@ public class Level
 	}
 	
 	
-	public void simStep(Direction dir)
+	public void simStep(Direction dir, Snake player)
 	{
-		ArrayList<Location> oldLoc = new ArrayList<Location>();
+		player.setDirection(dir);
+		Locatable adj = theEnv.objectAt(player.location().get(0).nextTo(dir));
+		if(adj instanceof Food)
+		{
+			adj.move(false);
+			player.move(true);
+			foodEaten++;
+			if(foodEaten >= foodRequired)
+			{
+				//LevelComplete
+				over = true;
+				won = true;
+			}
+		}
+		else if(adj instanceof Coin)
+		{
+			adj.move(false);
+			player.move(false);
+			score += 5;
+		}
+		else if(adj instanceof Bullet || adj instanceof Turret || adj instanceof Obstacle || adj instanceof SnakePart)
+		{
+			over = true;
+			won = false;
+			return;
+		}
+		else
+		{
+			player.move(false);
+		}
+		
+		for(int i = 0; i < theEnv.allObjects().length; i++)
+		{
+			if(theEnv.allObjects()[i] instanceof Bullet)
+			{	
+				if(theEnv.objectAt(theEnv.allObjects()[i].location().get(0).nextTo(theEnv.allObjects()[i].getDirection())) instanceof Snake)
+				{
+					over = true;
+					won = false;
+					return;
+				}
+			}
+			
+		}
+		clock++;
+		
+		/*ArrayList<Location> oldLoc = new ArrayList<Location>();
 		for(int i = 0; i < entities.size(); i++)
 		{	
 			oldLoc = entities.get(i).location();
@@ -123,7 +181,7 @@ public class Level
 							won = false;
 							break;
 						}
-					}*/
+					}
 					else if(entities.get(j) instanceof Coin && 
 							entities.get(j).location().get(0).equals(entities.get(i).location().get(0).nextTo(dir)))
 					{
@@ -138,7 +196,7 @@ public class Level
 					{
 						entities.get(i).move(true);
 						foodEaten++;
-						entities.remove(j);
+						entities.get(j).move(false);;
 						//entities.add(new Food(foods[foodEaten]));
 						break;
 					}
@@ -158,6 +216,6 @@ public class Level
 			}
 		}
 		
-		clock++;
+		clock++;*/
 	}
 }
