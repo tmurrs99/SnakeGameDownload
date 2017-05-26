@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Location
 {
 	private int row;
@@ -48,6 +50,16 @@ public class Location
 		else if(dir == Direction.WEST)
 			return new Location(this.row(),this.col()-1);
 		return null;
+	}
+	
+	public ArrayList<Location> surrounding()
+	{
+		ArrayList<Location> locs = new ArrayList<Location>();
+		locs.add(this.nextTo(Direction.NORTH));
+		locs.add(this.nextTo(Direction.SOUTH));
+		locs.add(this.nextTo(Direction.EAST));
+		locs.add(this.nextTo(Direction.WEST));
+		return locs;
 	}
 	
 	public String toString()

@@ -68,7 +68,7 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 					paintLoc(ent.get(i).location().get(j), g, ent.get(i).color());
 					
 				}
-				System.out.println(ent.get(i).location().get(0).toString());
+				//System.out.println(ent.get(i).location().get(0).toString());
 			}
 			//do header with level, points info
 		}
@@ -94,6 +94,7 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 		/*start level block*/
 		ArrayList<Locatable> ent1 = new ArrayList<Locatable>();
 		ent1.add(new Snake(new Location(10,10)));
+		ent1.add(new Food(new Location(20, 20)));
 		Level level1 = new Level(env, true, ent1, 10, score);
 		
 		while(!level1.isOver())
@@ -106,7 +107,7 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 			w.repaint();
 			System.out.println(ent.get(ent.size()-1).location().get(0).toString());
 			//paint level
-			delay(1000);
+			delay(200);
 		}
 		score += level1.getScore();
 		if(level1.won())
@@ -242,7 +243,7 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 		else if(e.getKeyCode() == KeyEvent.VK_S)
 			inputDir = Direction.SOUTH;
 		else if(e.getKeyCode() == KeyEvent.VK_D)
-			inputDir = Direction.NORTH;
+			inputDir = Direction.EAST;
 		if(e.getKeyCode() == KeyEvent.VK_SPACE)
 		{
 			spacePress = true;

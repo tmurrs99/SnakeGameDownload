@@ -77,12 +77,20 @@ public class Snake implements Locatable
 	
 	public void move(boolean eats)
 	{
+		System.out.println(length);
 		if(eats)
 		{
 			locs.add(0, new Location(locs.get(0).nextTo(dir).row(), locs.get(0).nextTo(dir).col()));
+			length++;
 		}
 		else
 		{
+			if(length > 1 && this.location().get(0).nextTo(dir).equals(this.location().get(1)))
+			{
+				//locs.add(0, new Location(locs.get(0).nextTo(dir.reverse()).row(), locs.get(0).nextTo(dir.reverse()).col()));
+				//locs.remove(locs.size()-1);
+				this.setDirection(dir.reverse());
+			}
 			locs.add(0, new Location(locs.get(0).nextTo(dir).row(), locs.get(0).nextTo(dir).col()));
 			locs.remove(locs.size()-1);
 			

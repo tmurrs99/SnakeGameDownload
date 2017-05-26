@@ -13,27 +13,12 @@ public class Level
 	private boolean over;
 	private boolean won = false;
 	private int score;
+	//private Location[] foods;
 	
 	public Level(SnakeEnv env)
 	{
 		entities = new ArrayList<Locatable>();
 		theEnv = env;
-	}
-	public Level(SnakeEnv env, boolean bounded)
-	{
-		entities = new ArrayList<Locatable>();
-		theEnv = env;
-		if(bounded)
-		{
-			for(int i = 0; i < theEnv.numRows(); i++)
-				entities.add(new Obstacle(new Location(0, i)));
-			for(int i = 1; i < theEnv.numRows()-1; i++)
-				entities.add(new Obstacle(new Location(theEnv.numCols()-1, i)));
-			for(int i = 1; i < theEnv.numCols(); i++)
-				entities.add(new Obstacle(new Location(i, 0)));
-			for(int i = 0; i < theEnv.numCols(); i++)
-				entities.add(new Obstacle(new Location(i, theEnv.numRows()-1)));
-		}
 	}
 	public Level(SnakeEnv env, boolean bounded, ArrayList<Locatable> initEnt, int foodR, int s)
 	{
@@ -55,7 +40,13 @@ public class Level
 		for(int i = 0; i < initEnt.size(); i++)
 		{
 			entities.add(initEnt.get(i));
+			theEnv.add(initEnt.get(i));
 		}
+		/*for(int i = 0; i < foodR; i++)
+		{
+			foods = new Location[foodR];
+			foods[i] = new Location((int)(Math.random()*env.getRows()), ((int)Math.random()*env.getCols()));
+		}*/
 	}
 	
 	public int getClock()
@@ -93,23 +84,27 @@ public class Level
 		return entities;
 	}
 	
+	
 	public void simStep(Direction dir)
 	{
 		ArrayList<Location> oldLoc = new ArrayList<Location>();
 		for(int i = 0; i < entities.size(); i++)
 		{	
-			
+			oldLoc = entities.get(i).location();
 			//check if the snake collides with an enemy and should die or eats food
 			if(entities.get(i) instanceof Snake)
 			{
+				System.out.println("instance of snake");
 				entities.get(i).setDirection(dir);
 				for(int j = 0; j < entities.size(); j++)
 				{
 					if(j == i);
-					else if((entities.get(j)) instanceof Obstacle || entities.get(j) instanceof Turret)
+					else if((entities.get(j)) instanceof Obstacle)
 					{
-						if(entities.get(j).location().equals(entities.get(i).location().get(0).nextTo(dir)))
+						System.out.println("Obstacle");
+						if(entities.get(j).location().get(0).equals(entities.get(i).location().get(0).nextTo(dir)))
 						{
+							System.out.println("Die");
 							//Do the level failed animation
 							//Exit level
 							over = true;
@@ -117,8 +112,20 @@ public class Level
 							break;
 						}
 					}
+					/*else if(entities.get(j) instanceof Turret)
+					{
+						if(entities.get(j).location().equals(entities.get(i).location().get(0).nextTo(dir)))
+						{
+							System.out.println("Die");
+							//Do the level failed animation
+							//Exit level
+							over = true;
+							won = false;
+							break;
+						}
+					}*/
 					else if(entities.get(j) instanceof Coin && 
-							entities.get(j).location().equals(entities.get(i).location().get(0).nextTo(dir)))
+							entities.get(j).location().get(0).equals(entities.get(i).location().get(0).nextTo(dir)))
 					{
 						score += 5;
 						theEnv.remove(entities.get(j));
@@ -127,12 +134,12 @@ public class Level
 						break;
 					}
 					else if(entities.get(j) instanceof Food &&
-							entities.get(j).location().equals(entities.get(i).location().get(0).nextTo(dir)))
+							entities.get(j).location().get(0).equals(entities.get(i).location().get(0).nextTo(dir)))
 					{
-						oldLoc = entities.get(i).location();
 						entities.get(i).move(true);
 						foodEaten++;
 						entities.remove(j);
+						//entities.add(new Food(foods[foodEaten]));
 						break;
 					}
 				}
