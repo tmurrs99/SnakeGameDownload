@@ -172,6 +172,18 @@ public class SnakeEnv extends SquareEnvironment
         objectCount--;
     }
     
+    public void removeAll()
+    {
+	    for(int i = 0; i < theGrid.length; i++)
+	    {
+	    	for(int j = 0; j < theGrid[i].length; j++)
+	    	{
+	    		theGrid[i][j] = null;
+	    	}
+	    }
+	    objectCount = 0;
+    }
+    
     /*public void snakeRemove(Locatable obj, int l)
     {
     	// Make sure that the object is there to remove.

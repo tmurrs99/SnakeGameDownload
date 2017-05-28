@@ -12,7 +12,7 @@ public class Turret implements Locatable
 	
 	
 
-	public Turret(Location loc, Direction d, int fd, SnakeEnv env)
+	public Turret(SnakeEnv env, Location loc, Direction d, int fd)
 	{
 		center = loc;
 		fireDelay = fd;
@@ -49,7 +49,9 @@ public class Turret implements Locatable
 		if(count == fireDelay)
 		{
 			bullets.add(new Bullet(theEnv, new Location(center.nextTo(dir).row(), center.nextTo(dir).col()), dir));	
+			count = 0;
 		}
+		count++;
 	}
 	
 	public void setDirection(Direction d)

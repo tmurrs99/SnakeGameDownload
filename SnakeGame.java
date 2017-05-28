@@ -6,6 +6,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFrame;
@@ -31,6 +32,7 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 	private static Direction inputDir = Direction.NORTH;
 	private static int currLvl;
 	private static Level theLvl;
+	private static SnakeEnv theEnv;
 	
 	public SnakeGame()
 	{
@@ -47,6 +49,7 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 		}
 		else if(success )
 		{
+			System.out.println("Success");
 			paintLvlSuccess(g);
 		}
 		else if(gameOver)
@@ -72,13 +75,19 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 			g.drawString("Food Eaten: " +theLvl.getFoodEaten() +"/" +theLvl.getFoodReq(), 140, 575);
 			g.drawString("Points: " +theLvl.getScore() +", prev. total= " +score, 250, 575);
 			
-			for(int i = 0; i < ent.size(); i++)
+			/*for(int i = 0; i < ent.size(); i++)
 			{
 				for(int j = 0; j < ent.get(i).location().size(); j++)
 				{
 					paintLoc(ent.get(i).location().get(j), g, ent.get(i).color());
 					
 				}
+				//System.out.println(ent.get(i).location().get(0).toString());
+			}*/
+			
+			for(int i = 0; i < theEnv.numObjects(); i++)
+			{
+					paintLoc(theEnv.allObjects()[i].location().get(0), g, theEnv.allObjects()[i].color());
 				//System.out.println(ent.get(i).location().get(0).toString());
 			}
 			//do header with level, points info
@@ -88,7 +97,7 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 	public static void main(String[] args)
 	{
 		
-		SnakeEnv theEnv = new SnakeEnv(ROWS, COLS);
+		theEnv = new SnakeEnv(ROWS, COLS);
 		
 		SnakeGame w = new SnakeGame();
 		w.setSize(GRID_LENGTH+100, GRID_LENGTH +100);
@@ -107,10 +116,11 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 		ArrayList<Locatable> ent1 = new ArrayList<Locatable>();
 		Snake player = new Snake(theEnv, new Location(10,10));
 		theEnv.add(new SnakePart(theEnv, new Location(10,10)));
+		theEnv.add(new Obstacle(theEnv, new Location(15,15), 2, 2));
 		ent1.add(player);
 		ent1.add(new Food(theEnv, new Location(20, 20)));
 		//ent1.add(new Coin(theEnv));
-		Level level1 = new Level(theEnv, true, ent1, 10, score);
+		Level level1 = new Level(theEnv, true, new ArrayList<Locatable>(Arrays.asList(theEnv.allObjects())), 10, score);
 		
 		while(!level1.isOver())
 		{
@@ -133,6 +143,44 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 		{
 			gameOver = true;
 		}
+		w.repaint();
+		delay(2000);
+		success = false;
+		theEnv.removeAll();
+		/*end level block*/
+		
+		/*start level block*/
+		ArrayList<Locatable> ent2 = new ArrayList<Locatable>();
+		player = new Snake(theEnv, new Location(10,10));
+		theEnv.add(new SnakePart(theEnv, new Location(10,10)));
+		ent2.add(player);
+		ent2.add(new Food(theEnv, new Location(20, 20)));
+		ent2.add(new Turret(theEnv, new Location(5,5), Direction.EAST, 3));
+		//ent1.add(new Coin(theEnv));
+		Level level2 = new Level(theEnv, false, ent2, 10, score);
+		
+		while(!level2.isOver())
+		{
+			theLvl = level2;
+			currLvl = 2;
+			System.out.println(inputDir.toString());
+			level2.simStep(inputDir, player);
+			ent = level2.getEntities();
+			w.repaint();
+			//System.out.println(ent.get(ent.size()-1).location().get(0).toString());
+			//paint level
+			delay(200);
+		}
+		score += level1.getScore();
+		if(level2.won())
+		{
+			success = true;
+		}
+		else
+		{
+			gameOver = true;
+		}
+		w.repaint();
 		delay(2000);
 		success = false;
 		/*end level block*/
@@ -206,7 +254,7 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 		g.fillRect(0, 0, GRID_LENGTH+100, GRID_LENGTH+100);
 		g.setFont(new Font("Courier", Font.PLAIN, 36)); 
 		g.setColor(Color.WHITE);
-		g.drawString("Level Success!!!", 200, 300);
+		g.drawString("Level Success!!!", 150, 300);
 	}
 	
 	public void paintGameOver(Graphics g)

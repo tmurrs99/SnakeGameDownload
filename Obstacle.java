@@ -27,12 +27,15 @@ public class Obstacle implements Locatable
 	{
 		locs = new ArrayList<Location>();
 		theEnv = env;
+		int c = 0;
 		for(int i = 0; i < y; i++)
 		{
 			for(int j = 0; j < x; j++)
 			{
 				locs.add(new Location(l.row()+i, l.col()+j));
-				theEnv.add(new Obstacle(env, locs.get(i)));
+				if(i > 1)
+					theEnv.add(new Obstacle(env, locs.get(c)));
+				c++;
 			}
 		}
 		yLength = y;

@@ -131,6 +131,10 @@ public class Level
 		
 		for(int i = 0; i < theEnv.allObjects().length; i++)
 		{
+			if(theEnv.allObjects()[i] instanceof Turret)
+			{
+				theEnv.allObjects()[i].move(false);
+			}
 			if(theEnv.allObjects()[i] instanceof Bullet)
 			{	
 				if(theEnv.objectAt(theEnv.allObjects()[i].location().get(0).nextTo(theEnv.allObjects()[i].getDirection())) instanceof Snake)
