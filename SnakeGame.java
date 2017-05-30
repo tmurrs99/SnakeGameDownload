@@ -25,6 +25,8 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 	Color BACK = new Color(0x636562);
 	private static boolean gameOver;
 	private static boolean success = false;
+	private static boolean restartScreen = false;
+	private static boolean resPress = false;
 	private static int score = 0;
 	private static ArrayList<Locatable> ent = new ArrayList<Locatable>();
 	private static boolean titleScreen = true;
@@ -47,10 +49,14 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 			paintTitle(g);
 			for(long i = 0; i < 100000000; i++);
 		}
-		else if(success )
+		else if(success)
 		{
 			System.out.println("Success");
 			paintLvlSuccess(g);
+		}
+		else if(restartScreen)
+		{
+			paintRestart(g);
 		}
 		else if(gameOver)
 		{
@@ -111,81 +117,85 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 		}
 		titleScreen = false;
 		
-		//repeat this block for each level
-		/*start level block*/
-		ArrayList<Locatable> ent1 = new ArrayList<Locatable>();
-		Snake player = new Snake(theEnv, new Location(10,10));
-		theEnv.add(new SnakePart(theEnv, new Location(10,10)));
-		theEnv.add(new Obstacle(theEnv, new Location(15,15), 2, 2));
-		ent1.add(player);
-		ent1.add(new Food(theEnv, new Location(20, 20)));
-		//ent1.add(new Coin(theEnv));
-		Level level1 = new Level(theEnv, true, new ArrayList<Locatable>(Arrays.asList(theEnv.allObjects())), 10, score);
-		
-		while(!level1.isOver())
+		do
 		{
-			theLvl = level1;
-			currLvl = 1;
-			System.out.println(inputDir.toString());
-			level1.simStep(inputDir, player);
-			ent = level1.getEntities();
+			//repeat this block for each level
+			/*start level block*/
+			ArrayList<Locatable> ent1 = new ArrayList<Locatable>();
+			Snake player = new Snake(theEnv, new Location(10,10));
+			theEnv.add(new SnakePart(theEnv, new Location(10,10)));
+			theEnv.add(new Obstacle(theEnv, new Location(15,15), 2, 2));
+			ent1.add(player);
+			ent1.add(new Food(theEnv, new Location(20, 20)));
+			//ent1.add(new Coin(theEnv));
+			Level level1 = new Level(theEnv, true, new ArrayList<Locatable>(Arrays.asList(theEnv.allObjects())), 10, score);
+			
+			while(!level1.isOver())
+			{
+				theLvl = level1;
+				currLvl = 1;
+				System.out.println(inputDir.toString());
+				level1.simStep(inputDir, player);
+				ent = level1.getEntities();
+				w.repaint();
+				//System.out.println(ent.get(ent.size()-1).location().get(0).toString());
+				//paint level
+				delay(200);
+			}
+			score += level1.getScore();
+			if(level1.won())
+			{
+				success = true;
+			}
+			else
+			{
+				restartScreen = true;
+				delay(10000);
+			}
 			w.repaint();
-			//System.out.println(ent.get(ent.size()-1).location().get(0).toString());
-			//paint level
-			delay(200);
-		}
-		score += level1.getScore();
-		if(level1.won())
-		{
-			success = true;
-		}
-		else
-		{
-			gameOver = true;
-		}
-		w.repaint();
-		delay(2000);
-		success = false;
-		theEnv.removeAll();
-		/*end level block*/
-		
-		/*start level block*/
-		ArrayList<Locatable> ent2 = new ArrayList<Locatable>();
-		player = new Snake(theEnv, new Location(10,10));
-		theEnv.add(new SnakePart(theEnv, new Location(10,10)));
-		ent2.add(player);
-		ent2.add(new Food(theEnv, new Location(20, 20)));
-		ent2.add(new Turret(theEnv, new Location(5,5), Direction.EAST, 3));
-		//ent1.add(new Coin(theEnv));
-		Level level2 = new Level(theEnv, false, ent2, 10, score);
-		
-		while(!level2.isOver())
-		{
-			theLvl = level2;
-			currLvl = 2;
-			System.out.println(inputDir.toString());
-			level2.simStep(inputDir, player);
-			ent = level2.getEntities();
+			delay(2000);
+			success = false;
+			theEnv.removeAll();
+			/*end level block*/
+			
+			/*start level block*/
+			ArrayList<Locatable> ent2 = new ArrayList<Locatable>();
+			player = new Snake(theEnv, new Location(10,10));
+			theEnv.add(new SnakePart(theEnv, new Location(10,10)));
+			ent2.add(player);
+			ent2.add(new Food(theEnv, new Location(20, 20)));
+			ent2.add(new Turret(theEnv, new Location(5,5), Direction.EAST, 3));
+			//ent1.add(new Coin(theEnv));
+			Level level2 = new Level(theEnv, false, ent2, 10, score);
+			
+			while(!level2.isOver())
+			{
+				theLvl = level2;
+				currLvl = 2;
+				System.out.println(inputDir.toString());
+				level2.simStep(inputDir, player);
+				ent = level2.getEntities();
+				w.repaint();
+				//System.out.println(ent.get(ent.size()-1).location().get(0).toString());
+				//paint level
+				delay(200);
+			}
+			score += level1.getScore();
+			if(level2.won())
+			{
+				success = true;
+			}
+			else
+			{
+				restartScreen = true;
+				delay(10000);	
+			}
 			w.repaint();
-			//System.out.println(ent.get(ent.size()-1).location().get(0).toString());
-			//paint level
-			delay(200);
-		}
-		score += level1.getScore();
-		if(level2.won())
-		{
-			success = true;
-		}
-		else
-		{
-			gameOver = true;
-		}
-		w.repaint();
-		delay(2000);
-		success = false;
-		/*end level block*/
-		
-		
+			delay(2000);
+			success = false;
+			/*end level block*/
+		}while(resPress);
+		gameOver = true;
 		
 	}
 	
@@ -198,6 +208,15 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 		gr.fillRect(x1, y1, (GRID_LENGTH/COLS), (GRID_LENGTH/COLS));
 	}
 	
+	public void paintRestart(Graphics g)
+	{
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, GRID_LENGTH+100, GRID_LENGTH+100);
+		g.setFont(new Font("Courier", Font.PLAIN, 18));
+		g.setColor(Color.WHITE);
+		g.drawString("Press R to Restart", 25, 300);
+		g.drawString("Final Score: " +score, 50, 400);
+	}
 	
 	public void paintTitle(Graphics g)
 	{
@@ -333,6 +352,11 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 		{
 			spacePress = true;
 			System.out.println("Space!");
+		}
+		if(e.getKeyCode() == KeyEvent.VK_R)
+		{
+			resPress = true;
+			
 		}
 	}
 

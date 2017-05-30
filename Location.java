@@ -67,4 +67,3 @@ public class Location
 		return "Location (" + row() + "," + col() + ")";
 	}
 }
-

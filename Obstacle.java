@@ -1,5 +1,6 @@
 
 
+
 //Snake Game
 //Tyler Murray
 
@@ -87,4 +88,3 @@ public class Obstacle implements Locatable
 	
 	
 }
-
