@@ -34,8 +34,8 @@ public class Turret implements Locatable
 			
 		for(int i  = 0; i < bullets.size(); i++)
 		{
-			if(bullets.get(i).location().get(0).nextTo(dir).row() >= theEnv.numRows() || bullets.get(i).location().get(0).nextTo(dir).col() >= theEnv.numCols()
-				|| bullets.get(i).location().get(0).nextTo(dir).row() < 0 || bullets.get(i).location().get(0).nextTo(dir).col() < 0)
+			if(bullets.get(i).location().get(0)./*nextTo(dir).*/row() >= theEnv.numRows() || bullets.get(i).location().get(0)./*nextTo(dir).*/col() >= theEnv.numCols()
+				|| bullets.get(i).location().get(0)./*nextTo(dir).*/row() < 0 || bullets.get(i).location().get(0)/*.nextTo(dir)*/.col() < 0)
 			{	
 				theEnv.remove(bullets.get(i));
 				bullets.remove(i);

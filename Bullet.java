@@ -31,9 +31,18 @@ public class Bullet implements Locatable {
 	@Override
 	public void move(boolean eats)
 	{
-		Location oldLoc = loc;
-		loc = loc.nextTo(dir);
-		theEnv.recordMove(this, oldLoc);
+		if(this.location().get(0)./*nextTo(dir).*/row() >= theEnv.numRows() || this.location().get(0)./*nextTo(dir).*/col() >= theEnv.numCols()
+				|| this.location().get(0)./*nextTo(dir).*/row() < 0 || this.location().get(0)/*.nextTo(dir)*/.col() < 0)
+		{	
+			theEnv.remove(this);
+		}
+		else
+		{
+			Location oldLoc = loc;
+			loc = loc.nextTo(dir);
+			theEnv.recordMove(this, oldLoc);
+		}
+			
 	}
 
 	@Override

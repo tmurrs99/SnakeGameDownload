@@ -106,14 +106,14 @@ public class Snake implements Locatable
 				theEnv.add(new Snake(theEnv, locs.get(0)));
 				length++;
 			}
-			else if(parts.get(0).location().get(0).nextTo(dir).row() < 0)
+			else if(parts.get(0).location().get(0)./*nextTo(dir).*/row() < 0)
 			{
 				locs.add(0, new Location(theEnv.numRows()-1, locs.get(0).nextTo(dir).col()));
 				parts.add(0, new SnakePart(theEnv, new Location(theEnv.numRows()-1, locs.get(0).nextTo(dir).col())));
 				theEnv.add(new Snake(theEnv, locs.get(0)));
 				length++;
 			}
-			else if(parts.get(0).location().get(0).nextTo(dir).col() < 0)
+			else if(parts.get(0).location().get(0)./*nextTo(dir).*/col() < 0)
 			{
 				locs.add(0, new Location(locs.get(0).nextTo(dir).row(), theEnv.numCols()-1));
 				parts.add(0, new SnakePart(theEnv, new Location(locs.get(0).nextTo(dir).row(), theEnv.numCols()-1)));
@@ -136,7 +136,7 @@ public class Snake implements Locatable
 				//locs.remove(locs.size()-1);
 				this.setDirection(dir.reverse());
 			}
-			if(parts.get(0).location().get(0).nextTo(dir).row() >= theEnv.numRows())
+			if(parts.get(0).location().get(0)./*nextTo(dir).*/row() >= theEnv.numRows())
 			{	
 				locs.add(0, new Location(0, locs.get(0).nextTo(dir).col()));
 				parts.add(0, new SnakePart(theEnv, new Location(0, locs.get(0).nextTo(dir).col())));
@@ -146,7 +146,7 @@ public class Snake implements Locatable
 				locs.remove(locs.size()-1);
 
 			}
-			else if(parts.get(0).location().get(0).nextTo(dir).col() >= theEnv.numCols())
+			else if(parts.get(0).location().get(0)./*nextTo(dir).*/col() >= theEnv.numCols())
 			{
 				locs.add(0, new Location(locs.get(0).nextTo(dir).row(), 0));
 				parts.add(0, new SnakePart(theEnv, new Location(locs.get(0).nextTo(dir).row(), 0)));
@@ -155,7 +155,7 @@ public class Snake implements Locatable
 				System.out.println("env remove");
 				locs.remove(locs.size()-1);
 			}
-			else if(parts.get(0).location().get(0).nextTo(dir).row() < 0)
+			else if(parts.get(0).location().get(0)./*nextTo(dir).*/row() < 0)
 			{
 				locs.add(0, new Location(theEnv.numRows()-1, locs.get(0).nextTo(dir).col()));
 				parts.add(0, new SnakePart(theEnv, new Location(theEnv.numRows()-1, locs.get(0).nextTo(dir).col())));
@@ -164,7 +164,7 @@ public class Snake implements Locatable
 				System.out.println("env remove");
 				locs.remove(locs.size()-1);
 			}
-			else if(parts.get(0).location().get(0).nextTo(dir).col() < 0)
+			else if(parts.get(0).location().get(0)./*nextTo(dir).*/col() < 0)
 			{
 				locs.add(0, new Location(locs.get(0).nextTo(dir).row(), theEnv.numCols()-1));
 				parts.add(0, new SnakePart(theEnv, new Location(locs.get(0).nextTo(dir).row(), theEnv.numCols()-1)));

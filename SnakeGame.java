@@ -128,7 +128,7 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 			ent1.add(player);
 			ent1.add(new Food(theEnv, new Location(20, 20)));
 			//ent1.add(new Coin(theEnv));
-			Level level1 = new Level(theEnv, true, new ArrayList<Locatable>(Arrays.asList(theEnv.allObjects())), 10, score);
+			Level level1 = new Level(theEnv, /*true*/ false, new ArrayList<Locatable>(Arrays.asList(theEnv.allObjects())), 10, score);
 			
 			while(!level1.isOver())
 			{

@@ -11,8 +11,8 @@ public class SquareEnvironment
 	
 	public SquareEnvironment()
 	{
-		numRows = 10;
-		numCols = 10;
+		numRows = 25;
+		numCols = 25;
 	}
 	public SquareEnvironment(int nR, int nC)
 	{

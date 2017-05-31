@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Random;
 
 //Snake Game
 //Tyler Murray
@@ -9,6 +10,7 @@ public class Food extends Pickup implements Locatable
 	
 	private Location loc;
 	private SnakeEnv theEnv;
+	private Random gen = new Random();
 	
 	public Food(SnakeEnv env, Location l)
 	{
@@ -49,7 +51,7 @@ public class Food extends Pickup implements Locatable
 		Location l;
 		do
 		{
-			l = new Location((int)(Math.random()*theEnv.getRows()), (int)(Math.random()*theEnv.getCols()));
+			l = new Location((int)(gen.nextDouble()*theEnv.getRows()), (int)(gen.nextDouble()*theEnv.getCols()));
 		}while(!theEnv.isEmpty(l));
 		Location oldLoc = loc;
 		loc = l;
