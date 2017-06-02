@@ -143,6 +143,7 @@ public class Level
 		{
 			if(theEnv.allObjects()[i] instanceof Turret)
 			{
+				Turret v = (Turret)theEnv.allObjects()[i];
 				theEnv.allObjects()[i].move(false);
 			}
 			if(theEnv.allObjects()[i] instanceof Bullet)
@@ -158,77 +159,5 @@ public class Level
 		}
 		clock++;
 		
-		/*ArrayList<Location> oldLoc = new ArrayList<Location>();
-		for(int i = 0; i < entities.size(); i++)
-		{	
-			oldLoc = entities.get(i).location();
-			//check if the snake collides with an enemy and should die or eats food
-			if(entities.get(i) instanceof Snake)
-			{
-				System.out.println("instance of snake");
-				entities.get(i).setDirection(dir);
-				for(int j = 0; j < entities.size(); j++)
-				{
-					if(j == i);
-					else if((entities.get(j)) instanceof Obstacle)
-					{
-						System.out.println("Obstacle");
-						if(entities.get(j).location().get(0).equals(entities.get(i).location().get(0).nextTo(dir)))
-						{
-							System.out.println("Die");
-							//Do the level failed animation
-							//Exit level
-							over = true;
-							won = false;
-							break;
-						}
-					}
-					/*else if(entities.get(j) instanceof Turret)
-					{
-						if(entities.get(j).location().equals(entities.get(i).location().get(0).nextTo(dir)))
-						{
-							System.out.println("Die");
-							//Do the level failed animation
-							//Exit level
-							over = true;
-							won = false;
-							break;
-						}
-					}
-					else if(entities.get(j) instanceof Coin && 
-							entities.get(j).location().get(0).equals(entities.get(i).location().get(0).nextTo(dir)))
-					{
-						score += 5;
-						theEnv.remove(entities.get(j));
-						entities.remove(j);
-						entities.get(i).move(false);
-						break;
-					}
-					else if(entities.get(j) instanceof Food &&
-							entities.get(j).location().get(0).equals(entities.get(i).location().get(0).nextTo(dir)))
-					{
-						entities.get(i).move(true);
-						foodEaten++;
-						entities.get(j).move(false);;
-						//entities.add(new Food(foods[foodEaten]));
-						break;
-					}
-				}
-				entities.get(i).move(false);
-				if(foodEaten >= foodRequired)
-				{
-					//LevelComplete
-					over = true;
-					won = true;
-				}
-						
-			}
-			else
-			{
-				entities.get(i).move(false);
-			}
-		}
-		
-		clock++;*/
 	}
 }

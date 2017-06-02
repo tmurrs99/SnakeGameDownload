@@ -31,11 +31,15 @@ public class Bullet implements Locatable {
 	@Override
 	public void move(boolean eats)
 	{
-		if(this.location().get(0)./*nextTo(dir).*/row() >= theEnv.numRows() || this.location().get(0)./*nextTo(dir).*/col() >= theEnv.numCols()
-				|| this.location().get(0)./*nextTo(dir).*/row() < 0 || this.location().get(0)/*.nextTo(dir)*/.col() < 0)
+		if(this.location().get(0)./*nextTo(dir).*/row() >= theEnv.numRows()-2 || this.location().get(0)./*nextTo(dir).*/col() >= theEnv.numCols()-2
+				|| this.location().get(0)./*nextTo(dir).*/row() < 2 || this.location().get(0)/*.nextTo(dir)*/.col() < 2)
 		{	
-			theEnv.remove(this);
+			theEnv.remove(theEnv.objectAt(this.location().get(0)));
 		}
+		/*else if(theEnv.objectAt(this.location().get(0).nextTo(dir)) instanceof Obstacle)
+		{
+			theEnv.remove(this);
+		}*/
 		else
 		{
 			Location oldLoc = loc;

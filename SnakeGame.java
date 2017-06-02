@@ -8,7 +8,6 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
-
 import javax.swing.JFrame;
 
 //Snake Game
@@ -30,7 +29,7 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 	private static int score = 0;
 	private static ArrayList<Locatable> ent = new ArrayList<Locatable>();
 	private static boolean titleScreen = true;
-	public static boolean spacePress = false;
+	private static boolean spacePress = false;
 	private static Direction inputDir = Direction.NORTH;
 	private static int currLvl;
 	private static Level theLvl;
@@ -81,22 +80,13 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 			g.drawString("Food Eaten: " +theLvl.getFoodEaten() +"/" +theLvl.getFoodReq(), 140, 575);
 			g.drawString("Points: " +theLvl.getScore() +", prev. total= " +score, 250, 575);
 			
-			/*for(int i = 0; i < ent.size(); i++)
-			{
-				for(int j = 0; j < ent.get(i).location().size(); j++)
-				{
-					paintLoc(ent.get(i).location().get(j), g, ent.get(i).color());
-					
-				}
-				//System.out.println(ent.get(i).location().get(0).toString());
-			}*/
+		
 			
 			for(int i = 0; i < theEnv.numObjects(); i++)
 			{
 					paintLoc(theEnv.allObjects()[i].location().get(0), g, theEnv.allObjects()[i].color());
-				//System.out.println(ent.get(i).location().get(0).toString());
+				
 			}
-			//do header with level, points info
 		}
 	}
 	
@@ -128,7 +118,7 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 			ent1.add(player);
 			ent1.add(new Food(theEnv, new Location(20, 20)));
 			//ent1.add(new Coin(theEnv));
-			Level level1 = new Level(theEnv, /*true*/ false, new ArrayList<Locatable>(Arrays.asList(theEnv.allObjects())), 10, score);
+			Level level1 = new Level(theEnv, true, new ArrayList<Locatable>(Arrays.asList(theEnv.allObjects())), 1, score);
 			
 			while(!level1.isOver())
 			{
@@ -166,7 +156,7 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 			ent2.add(new Food(theEnv, new Location(20, 20)));
 			ent2.add(new Turret(theEnv, new Location(5,5), Direction.EAST, 3));
 			//ent1.add(new Coin(theEnv));
-			Level level2 = new Level(theEnv, false, ent2, 10, score);
+			Level level2 = new Level(theEnv, true, ent2, 10, score);
 			
 			while(!level2.isOver())
 			{

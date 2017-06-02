@@ -11,6 +11,7 @@ public class Turret implements Locatable
 	private SnakeEnv theEnv;
 	
 	
+	
 
 	public Turret(SnakeEnv env, Location loc, Direction d, int fd)
 	{
@@ -29,15 +30,25 @@ public class Turret implements Locatable
 		return loc;
 	}
 	
+	public void updateFrequency(int l)
+	{
+		if(fireDelay < l)
+		{
+			fireDelay = l;
+		}
+	}
+	
 	public void move(boolean eats)
 	{
 			
+		
 		for(int i  = 0; i < bullets.size(); i++)
 		{
-			if(bullets.get(i).location().get(0)./*nextTo(dir).*/row() >= theEnv.numRows() || bullets.get(i).location().get(0)./*nextTo(dir).*/col() >= theEnv.numCols()
-				|| bullets.get(i).location().get(0)./*nextTo(dir).*/row() < 0 || bullets.get(i).location().get(0)/*.nextTo(dir)*/.col() < 0)
+			if(bullets.get(i).location().get(0)./*nextTo(dir).*/row() >= theEnv.numRows()-2 || bullets.get(i).location().get(0)./*nextTo(dir).*/col() >= theEnv.numCols()-2
+				|| bullets.get(i).location().get(0)./*nextTo(dir).*/row() < 2 || bullets.get(i).location().get(0)/*.nextTo(dir)*/.col() < 2)
 			{	
-				theEnv.remove(bullets.get(i));
+				//theEnv.remove(bullets.get(i));
+				bullets.get(i).move(false);
 				bullets.remove(i);
 			}
 			else

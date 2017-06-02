@@ -95,7 +95,7 @@ public class Snake implements Locatable
 			{	
 				locs.add(0, new Location(0, locs.get(0).nextTo(dir).col()));
 				parts.add(0, new SnakePart(theEnv, new Location(0, locs.get(0).nextTo(dir).col())));
-				theEnv.add(new Snake(theEnv, locs.get(0)));
+				theEnv.add(new SnakePart(theEnv, locs.get(0)));
 				length++;
 
 			}
@@ -103,21 +103,21 @@ public class Snake implements Locatable
 			{
 				locs.add(0, new Location(locs.get(0).nextTo(dir).row(), 0));
 				parts.add(0, new SnakePart(theEnv, new Location(locs.get(0).nextTo(dir).row(), 0)));
-				theEnv.add(new Snake(theEnv, locs.get(0)));
+				theEnv.add(new SnakePart(theEnv, locs.get(0)));
 				length++;
 			}
 			else if(parts.get(0).location().get(0)./*nextTo(dir).*/row() < 0)
 			{
 				locs.add(0, new Location(theEnv.numRows()-1, locs.get(0).nextTo(dir).col()));
 				parts.add(0, new SnakePart(theEnv, new Location(theEnv.numRows()-1, locs.get(0).nextTo(dir).col())));
-				theEnv.add(new Snake(theEnv, locs.get(0)));
+				theEnv.add(new SnakePart(theEnv, locs.get(0)));
 				length++;
 			}
 			else if(parts.get(0).location().get(0)./*nextTo(dir).*/col() < 0)
 			{
 				locs.add(0, new Location(locs.get(0).nextTo(dir).row(), theEnv.numCols()-1));
 				parts.add(0, new SnakePart(theEnv, new Location(locs.get(0).nextTo(dir).row(), theEnv.numCols()-1)));
-				theEnv.add(new Snake(theEnv, locs.get(0)));
+				theEnv.add(new SnakePart(theEnv, locs.get(0)));
 				length++;
 			}
 			else
@@ -140,7 +140,7 @@ public class Snake implements Locatable
 			{	
 				locs.add(0, new Location(0, locs.get(0).nextTo(dir).col()));
 				parts.add(0, new SnakePart(theEnv, new Location(0, locs.get(0).nextTo(dir).col())));
-				theEnv.add(new Snake(theEnv, locs.get(0)));
+				theEnv.add(new SnakePart(theEnv, locs.get(0)));
 				theEnv.remove(theEnv.objectAt(locs.get(length)));
 				System.out.println("env remove");
 				locs.remove(locs.size()-1);
@@ -150,7 +150,7 @@ public class Snake implements Locatable
 			{
 				locs.add(0, new Location(locs.get(0).nextTo(dir).row(), 0));
 				parts.add(0, new SnakePart(theEnv, new Location(locs.get(0).nextTo(dir).row(), 0)));
-				theEnv.add(new Snake(theEnv, locs.get(0)));
+				theEnv.add(new SnakePart(theEnv, locs.get(0)));
 				theEnv.remove(theEnv.objectAt(locs.get(length)));
 				System.out.println("env remove");
 				locs.remove(locs.size()-1);
@@ -159,7 +159,7 @@ public class Snake implements Locatable
 			{
 				locs.add(0, new Location(theEnv.numRows()-1, locs.get(0).nextTo(dir).col()));
 				parts.add(0, new SnakePart(theEnv, new Location(theEnv.numRows()-1, locs.get(0).nextTo(dir).col())));
-				theEnv.add(new Snake(theEnv, locs.get(0)));
+				theEnv.add(new SnakePart(theEnv, locs.get(0)));
 				theEnv.remove(theEnv.objectAt(locs.get(length)));
 				System.out.println("env remove");
 				locs.remove(locs.size()-1);
@@ -168,7 +168,7 @@ public class Snake implements Locatable
 			{
 				locs.add(0, new Location(locs.get(0).nextTo(dir).row(), theEnv.numCols()-1));
 				parts.add(0, new SnakePart(theEnv, new Location(locs.get(0).nextTo(dir).row(), theEnv.numCols()-1)));
-				theEnv.add(new Snake(theEnv, locs.get(0)));
+				theEnv.add(new SnakePart(theEnv, locs.get(0)));
 				theEnv.remove(theEnv.objectAt(locs.get(length)));
 				System.out.println("env remove");
 				locs.remove(locs.size()-1);
