@@ -98,6 +98,45 @@ public class Level
 	public void simStep(Direction dir, Snake player)
 	{
 		System.out.println("Sim Step");
+		
+		for(int i = 0; i < theEnv.allObjects().length; i++)
+		{
+			
+			if(theEnv.allObjects()[i] instanceof Bullet)
+			{	
+				if(theEnv.objectAt(theEnv.allObjects()[i].location().get(0).nextTo(theEnv.allObjects()[i].getDirection())) instanceof Snake)
+				{
+					over = true;
+					won = false;
+					return;
+				}
+			}
+			if(theEnv.allObjects()[i] instanceof Turret)
+			{
+				theEnv.allObjects()[i].updateValues(player.getLength());
+				Turret t = (Turret) theEnv.allObjects()[i];
+				for(Bullet b : t.getBullets())
+				{
+					if(theEnv.objectAt(b.location().get(0).nextTo(b.getDirection())) instanceof SnakePart )
+					{
+						over = true;
+						won = false;
+						return;
+					}
+					else if(theEnv.objectAt(b.location().get(0).nextTo(b.getDirection())) instanceof Food)
+					{
+						theEnv.objectAt(b.location().get(0).nextTo(b.getDirection())).move(false);
+					}
+					else if(theEnv.objectAt(b.location().get(0).nextTo(b.getDirection())) instanceof Coin)
+					{
+						theEnv.objectAt(b.location().get(0).nextTo(b.getDirection())).move(false);
+					}
+				}
+				theEnv.allObjects()[i].move(false);
+			}
+			
+		}
+		
 		player.setDirection(dir);
 		Locatable adj = theEnv.objectAt(player.location().get(0).nextTo(dir));
 		if(adj instanceof Food)
@@ -119,7 +158,7 @@ public class Level
 			player.move(false);
 			score += 5;
 		}
-		else if(adj instanceof Bullet || adj instanceof Turret || adj instanceof Obstacle)
+		else if(/*adj instanceof Bullet || */adj instanceof Turret || adj instanceof Obstacle)
 		{
 			over = true;
 			won = false;
@@ -140,24 +179,7 @@ public class Level
 			player.move(false);
 		}
 		
-		for(int i = 0; i < theEnv.allObjects().length; i++)
-		{
-			if(theEnv.allObjects()[i] instanceof Turret)
-			{
-				theEnv.allObjects()[i].updateValues(player.getLength());
-				theEnv.allObjects()[i].move(false);
-			}
-			if(theEnv.allObjects()[i] instanceof Bullet)
-			{	
-				if(theEnv.objectAt(theEnv.allObjects()[i].location().get(0).nextTo(theEnv.allObjects()[i].getDirection())) instanceof Snake)
-				{
-					over = true;
-					won = false;
-					return;
-				}
-			}
-			
-		}
+		
 		clock++;
 		
 	}
