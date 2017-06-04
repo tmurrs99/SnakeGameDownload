@@ -1,3 +1,4 @@
+import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -9,12 +10,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 //Snake Game
 //Tyler Murray
 
 
-public class SnakeGame extends JFrame implements KeyListener, MouseListener
+public class SnakeGame extends JPanel implements KeyListener, MouseListener
 {
 	
 	final static int ROWS = 25;
@@ -37,8 +39,8 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 	
 	public SnakeGame()
 	{
-		super("Snake++");
-		addKeyListener(this);
+		//super("Snake++");
+		//addKeyListener(this);
 	}
 	
 	public void paint(Graphics g)
@@ -93,8 +95,14 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 		theEnv = new SnakeEnv(ROWS, COLS);
 		
 		SnakeGame w = new SnakeGame();
-		w.setSize(GRID_LENGTH+100, GRID_LENGTH +100);
-		w.show();
+		JFrame frame = new JFrame("Snake++");
+		frame.setSize(GRID_LENGTH+110, GRID_LENGTH +145);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().add(w);
+		frame.setVisible(true);
+		frame.addKeyListener(w);
+		frame.setFocusCycleRoot(true);
+		//w.show();
 		
 		
 		
@@ -122,7 +130,7 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 				theLvl = level1;
 				currLvl = 1;
 				level1.simStep(inputDir, player);
-				ent = level1.getEntities();
+				//ent = level1.getEntities();
 				w.repaint();
 				delay(200);
 			}
@@ -143,6 +151,7 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 			
 			theEnv.removeAll();
 			/*end level block*/
+			
 			if(success)
 			{
 				success = false;

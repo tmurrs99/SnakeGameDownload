@@ -94,7 +94,6 @@ public class Level
 		return entities;
 	}
 	
-	
 	public void simStep(Direction dir, Snake player)
 	{
 		System.out.println("Sim Step");
@@ -158,7 +157,7 @@ public class Level
 			player.move(false);
 			score += 5;
 		}
-		else if(/*adj instanceof Bullet || */adj instanceof Turret || adj instanceof Obstacle)
+		else if(adj instanceof Turret || adj instanceof Obstacle)
 		{
 			over = true;
 			won = false;
