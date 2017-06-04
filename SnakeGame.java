@@ -140,50 +140,56 @@ public class SnakeGame extends JFrame implements KeyListener, MouseListener
 			else
 			{
 				restartScreen = true;
+				w.repaint();
 				delay(10000);
+				success = false;
 			}
 			w.repaint();
 			delay(2000);
-			success = false;
+			
 			theEnv.removeAll();
 			/*end level block*/
-			
-			/*start level block*/
-			ArrayList<Locatable> ent2 = new ArrayList<Locatable>();
-			player = new Snake(theEnv, new Location(10,10));
-			theEnv.add(new SnakePart(theEnv, new Location(10,10)));
-			ent2.add(player);
-			ent2.add(new Food(theEnv, new Location(20, 20)));
-			ent2.add(new Turret(theEnv, new Location(5,5), Direction.EAST, 3));
-			//ent1.add(new Coin(theEnv));
-			Level level2 = new Level(theEnv, false, ent2, 10, score);
-			
-			while(!level2.isOver())
+			if(success)
 			{
-				theLvl = level2;
-				currLvl = 2;
-				System.out.println(inputDir.toString());
-				level2.simStep(inputDir, player);
-				ent = level2.getEntities();
+				success = false;
+				/*start level block*/
+				ArrayList<Locatable> ent2 = new ArrayList<Locatable>();
+				player = new Snake(theEnv, new Location(10,10));
+				theEnv.add(new SnakePart(theEnv, new Location(10,10)));
+				ent2.add(player);
+				ent2.add(new Food(theEnv, new Location(20, 20)));
+				ent2.add(new Turret(theEnv, new Location(5,5), Direction.EAST, 3));
+				//ent1.add(new Coin(theEnv));
+				Level level2 = new Level(theEnv, false, ent2, 10, score);
+				
+				while(!level2.isOver())
+				{
+					theLvl = level2;
+					currLvl = 2;
+					System.out.println(inputDir.toString());
+					level2.simStep(inputDir, player);
+					ent = level2.getEntities();
+					w.repaint();
+					//System.out.println(ent.get(ent.size()-1).location().get(0).toString());
+					//paint level
+					delay(200);
+				}
+				score += level1.getScore();
+				if(level2.won())
+				{
+					success = true;
+				}
+				else
+				{
+					restartScreen = true;
+					w.repaint();
+					delay(10000);
+					success = false;
+				}
 				w.repaint();
-				//System.out.println(ent.get(ent.size()-1).location().get(0).toString());
-				//paint level
-				delay(200);
+				delay(2000);
+				/*end level block*/
 			}
-			score += level1.getScore();
-			if(level2.won())
-			{
-				success = true;
-			}
-			else
-			{
-				restartScreen = true;
-				delay(10000);	
-			}
-			w.repaint();
-			delay(2000);
-			success = false;
-			/*end level block*/
 		}while(resPress);
 		gameOver = true;
 		
