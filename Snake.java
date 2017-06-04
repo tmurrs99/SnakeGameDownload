@@ -47,6 +47,11 @@ public class Snake implements Locatable
 		return new Color(0x0000E1);
 	}
 	
+	public int getLength()
+	{
+		return length;
+	}
+	
 	public void setDirection(Direction d)
 	{
 		dir = d;
@@ -61,27 +66,6 @@ public class Snake implements Locatable
 	{
 		return "Snake";
 	}
-	/*
-	public void grow(Direction dir)
-	{
-		if(dir == Direction.NORTH)
-		{
-			locs.add(new Location(locs.get(locs.size()-1).row()-1,locs.get(locs.size()-1).col()));
-		}
-		else if(dir == Direction.SOUTH)
-		{
-			locs.add(new Location(locs.get(locs.size()-1).row()+1,locs.get(locs.size()-1).col()));
-		}
-		else if(dir == Direction.EAST)
-		{
-			locs.add(new Location(locs.get(locs.size()-1).row(),locs.get(locs.size()-1).col()+1));
-		}
-		else if(dir == Direction.WEST)
-		{
-			locs.add(new Location(locs.get(locs.size()-1).row(),locs.get(locs.size()-1).col()-1));
-		}
-	}
-	*/
 	
 	
 	public void move(boolean eats)
@@ -187,5 +171,11 @@ public class Snake implements Locatable
 			
 			
 		}
+	}
+
+	@Override
+	public void updateValues(int l) {
+		// TODO Auto-generated method stub
+		
 	}
 }

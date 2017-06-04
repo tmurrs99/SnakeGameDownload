@@ -83,6 +83,11 @@ public class Obstacle implements Locatable
 	{
 		return xLength;
 	}
+	@Override
+	public void updateValues(int l) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 	

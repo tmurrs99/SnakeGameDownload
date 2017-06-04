@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public class Turret implements Locatable
 {
 	private Direction dir;
+	private int initFd;
 	private int fireDelay;
 	private ArrayList<Bullet> bullets;
 	private Location center;
@@ -16,6 +17,7 @@ public class Turret implements Locatable
 	public Turret(SnakeEnv env, Location loc, Direction d, int fd)
 	{
 		center = loc;
+		initFd = fd;
 		fireDelay = fd;
 		bullets = new ArrayList<Bullet>();
 		dir = d;
@@ -30,39 +32,41 @@ public class Turret implements Locatable
 		return loc;
 	}
 	
-	public void updateFrequency(int l)
+	public void updateValues(int l)
 	{
-		if(fireDelay < l)
+		if(fireDelay < l + (initFd - 1))
 		{
-			fireDelay = l;
+			fireDelay = l + (initFd - 1);
 		}
 	}
 	
 	public void move(boolean eats)
 	{
-			
-		
-		for(int i  = 0; i < bullets.size(); i++)
-		{
-			if(bullets.get(i).location().get(0)./*nextTo(dir).*/row() >= theEnv.numRows()-2 || bullets.get(i).location().get(0)./*nextTo(dir).*/col() >= theEnv.numCols()-2
-				|| bullets.get(i).location().get(0)./*nextTo(dir).*/row() < 2 || bullets.get(i).location().get(0)/*.nextTo(dir)*/.col() < 2)
-			{	
-				//theEnv.remove(bullets.get(i));
-				bullets.get(i).move(false);
-				bullets.remove(i);
-			}
-			else
-			{
-				//bullets.set(i, new Location((bullets.get(i).nextTo(dir)).row(), (bullets.get(i).nextTo(dir)).col()));
-				bullets.get(i).move(false);
-			}	
-		}
+
 		if(count == fireDelay)
 		{
 			bullets.add(new Bullet(theEnv, new Location(center.nextTo(dir).row(), center.nextTo(dir).col()), dir));	
 			count = 0;
 		}
 		count++;
+		if(bullets.size() == 0)
+			return;
+		
+		if(bullets.get(0).location().get(0).row() >= theEnv.numRows()-1 || 
+				bullets.get(0).location().get(0).col() >= theEnv.numCols()-1 ||
+				bullets.get(0).location().get(0).row() < 1 ||
+				bullets.get(0).location().get(0).col() < 1)
+		{
+			bullets.get(0).move(true);
+			bullets.remove(0);
+		}
+		
+		
+		for(int i = 0; i < bullets.size(); i++)
+		{
+			bullets.get(i).move(false);
+		}
+		
 	}
 	
 	public void setDirection(Direction d)

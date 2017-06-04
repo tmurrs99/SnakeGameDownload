@@ -31,8 +31,12 @@ public class Bullet implements Locatable {
 	@Override
 	public void move(boolean eats)
 	{
-		if(this.location().get(0)./*nextTo(dir).*/row() >= theEnv.numRows()-2 || this.location().get(0)./*nextTo(dir).*/col() >= theEnv.numCols()-2
-				|| this.location().get(0)./*nextTo(dir).*/row() < 2 || this.location().get(0)/*.nextTo(dir)*/.col() < 2)
+		if(this.location().get(0).row() == 24 || this.location().get(0).row() == 23)
+		{
+			theEnv.remove(this);
+		}
+		
+		if(eats)
 		{	
 			theEnv.remove(theEnv.objectAt(this.location().get(0)));
 		}
@@ -60,6 +64,14 @@ public class Bullet implements Locatable {
 	{
 		// TODO Auto-generated method stub
 
+	}
+
+	
+
+	@Override
+	public void updateValues(int l) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

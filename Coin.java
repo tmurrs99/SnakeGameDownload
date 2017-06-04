@@ -70,5 +70,12 @@ public class Coin extends Pickup implements Locatable
 		loc = l;
 		theEnv.recordMove(this, oldLoc);
 	}
+
+	
+	@Override
+	public void updateValues(int l) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

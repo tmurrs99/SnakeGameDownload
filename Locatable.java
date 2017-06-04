@@ -15,4 +15,6 @@ public interface Locatable
 	public String toString();
 	
 	public Direction getDirection();
+	
+	public void updateValues(int l);
 }

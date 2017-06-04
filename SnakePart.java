@@ -52,4 +52,10 @@ public class SnakePart implements Locatable
 		return "";
 	}
 
+	@Override
+	public void updateValues(int l) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

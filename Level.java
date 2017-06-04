@@ -97,6 +97,7 @@ public class Level
 	
 	public void simStep(Direction dir, Snake player)
 	{
+		System.out.println("Sim Step");
 		player.setDirection(dir);
 		Locatable adj = theEnv.objectAt(player.location().get(0).nextTo(dir));
 		if(adj instanceof Food)
@@ -143,7 +144,7 @@ public class Level
 		{
 			if(theEnv.allObjects()[i] instanceof Turret)
 			{
-				Turret v = (Turret)theEnv.allObjects()[i];
+				theEnv.allObjects()[i].updateValues(player.getLength());
 				theEnv.allObjects()[i].move(false);
 			}
 			if(theEnv.allObjects()[i] instanceof Bullet)
