@@ -97,6 +97,8 @@ public class Level
 	public void simStep(Direction dir, Snake player)
 	{
 		System.out.println("Sim Step");
+		boolean moved = false;
+		player.setDirection(dir);
 		
 		for(int i = 0; i < theEnv.allObjects().length; i++)
 		{
@@ -113,14 +115,31 @@ public class Level
 			if(theEnv.allObjects()[i] instanceof Turret)
 			{
 				theEnv.allObjects()[i].updateValues(player.getLength());
+				 
 				Turret t = (Turret) theEnv.allObjects()[i];
 				for(Bullet b : t.getBullets())
 				{
 					if(theEnv.objectAt(b.location().get(0).nextTo(b.getDirection())) instanceof SnakePart )
 					{
-						over = true;
-						won = false;
-						return;
+						System.out.println("NEXT TO A SNAKE PART");
+						if(dir.equals(t.getDirection()) || dir.equals(t.getDirection().reverse()))
+						{
+							over = true;
+							won = false;
+							return;
+						}
+						else
+						{
+							player.move(false);
+							moved = true;
+							if(theEnv.objectAt(b.location().get(0).nextTo(b.getDirection())) instanceof SnakePart )
+							{
+								over = true;
+								won = false;
+								return;
+							}
+							
+						}
 					}
 					else if(theEnv.objectAt(b.location().get(0).nextTo(b.getDirection())) instanceof Food)
 					{
@@ -136,46 +155,48 @@ public class Level
 			
 		}
 		
-		player.setDirection(dir);
-		Locatable adj = theEnv.objectAt(player.location().get(0).nextTo(dir));
-		if(adj instanceof Food)
+		if(!moved)
 		{
-			adj.move(false);
-			player.move(true);
-			foodEaten++;
-			if(foodEaten >= foodRequired)
+			Locatable adj = theEnv.objectAt(player.location().get(0).nextTo(dir));
+			if(adj instanceof Food)
 			{
-				//LevelComplete
-				over = true;
-				won = true;
-				return;
+				adj.move(false);
+				player.move(true);
+				foodEaten++;
+				if(foodEaten >= foodRequired)
+				{
+					//LevelComplete
+					over = true;
+					won = true;
+					return;
+				}
 			}
-		}
-		else if(adj instanceof Coin)
-		{
-			adj.move(false);
-			player.move(false);
-			score += 5;
-		}
-		else if(adj instanceof Turret || adj instanceof Obstacle)
-		{
-			over = true;
-			won = false;
-			return;	
-		}
-		else if(adj instanceof SnakePart)
-		{
-			player.move(false);
-			if(player.location().get(0).equals(adj.location().get(0)))
+			else if(adj instanceof Coin)
+			{
+				adj.move(false);
+				player.move(false);
+				score += 5;
+			}
+			else if(adj instanceof Bullet || adj instanceof Turret || adj instanceof Obstacle)
 			{
 				over = true;
 				won = false;
-				return;
+				return;	
 			}
-		}
-		else
-		{
-			player.move(false);
+			else if(adj instanceof SnakePart)
+			{
+				player.move(false);
+				if(player.location().get(0).equals(adj.location().get(0)))
+				{
+					over = true;
+					won = false;
+					return;
+				}
+			}
+			else
+			{
+				player.move(false);
+			}
 		}
 		
 		
