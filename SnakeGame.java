@@ -1,4 +1,4 @@
-import java.awt.Canvas;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -29,7 +29,7 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 	private static boolean restartScreen = false;
 	private static boolean resPress = false;
 	private static int score = 0;
-	private static ArrayList<Locatable> ent = new ArrayList<Locatable>();
+	//private static ArrayList<Locatable> ent = new ArrayList<Locatable>();
 	private static boolean titleScreen = true;
 	private static boolean spacePress = false;
 	private static Direction inputDir = Direction.NORTH;
@@ -171,7 +171,7 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 					currLvl = 2;
 					System.out.println(inputDir.toString());
 					level2.simStep(inputDir, player);
-					ent = level2.getEntities();
+					//ent = level2.getEntities();
 					w.repaint();
 					//System.out.println(ent.get(ent.size()-1).location().get(0).toString());
 					//paint level
@@ -244,6 +244,7 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 		g.fillRect(11*k, 6*k, k, 2*k);
 		g.fillRect(12*k, 8*k, k, 2*k);
 		g.drawString("(Press SpaceBar to begin)", 250, 450);
+		g.drawString("(Use WASD to move)", 250, 475);
 		
 		g.setColor(Color.BLACK);
 		g.fillRect(3*k, 4*k, 3*k, 2*k);
@@ -339,13 +340,13 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 	public void keyPressed(KeyEvent e)
 	{
 		
-		if(e.getKeyCode() == KeyEvent.VK_W)
+		if(e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_KP_UP)
 			inputDir = Direction.NORTH;
-		else if(e.getKeyCode() == KeyEvent.VK_A)
+		else if(e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_KP_LEFT)
 			inputDir = Direction.WEST;
-		else if(e.getKeyCode() == KeyEvent.VK_S)
+		else if(e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_KP_DOWN)
 			inputDir = Direction.SOUTH;
-		else if(e.getKeyCode() == KeyEvent.VK_D)
+		else if(e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_KP_RIGHT)
 			inputDir = Direction.EAST;
 		if(e.getKeyCode() == KeyEvent.VK_SPACE)
 		{
