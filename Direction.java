@@ -39,7 +39,7 @@ public enum Direction
 		}
 		else
 		{
-			return Direction.NORTH;
+			return Direction.SOUTH;
 		}
 	}
 }

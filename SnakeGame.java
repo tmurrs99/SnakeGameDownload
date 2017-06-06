@@ -104,6 +104,7 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 		frame.setFocusCycleRoot(true);
 		//w.show();
 		
+		Level[] levels = new Level[10];
 		
 		
 		while(!spacePress)
@@ -112,10 +113,34 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 		}
 		titleScreen = false;
 		
+		/*
+		 *Make an array of levels and loop through the while loop section of each level block
+		 *in a for loop
+		 */
+		ArrayList<Locatable> ent1 = new ArrayList<Locatable>();
+		Snake player = new Snake(theEnv, new Location(10,10));
+		//theEnv.add(new SnakePart(theEnv, new Location(10,10)));
+		//theEnv.add(new Obstacle(theEnv, new Location(15,15), 2, 2));
+		ent1.add(player);
+		ent1.add(new Food(theEnv, new Location(20, 20)));
+		//ent1.add(new Coin(theEnv));
+		Level level1 = new Level(theEnv, true, new ArrayList<Locatable>(Arrays.asList(theEnv.allObjects())), 5, score);
+		levels[0] = level1;
+			
+		ArrayList<Locatable> ent2 = new ArrayList<Locatable>();
+		player = new Snake(theEnv, new Location(5,10));
+		//theEnv.add(new SnakePart(theEnv, new Location(5,10)));
+		ent2.add(player);
+		ent2.add(new Food(theEnv, new Location(20, 20)));
+		ent2.add(new Turret(theEnv, new Location(10,1), Direction.EAST, 4));
+		//ent1.add(new Coin(theEnv));
+		Level level2 = new Level(theEnv, true, ent2, 10, score);
+		levels[1] = level2;
+		/*
 		do
 		{
 			//repeat this block for each level
-			/*start level block*/
+			
 			ArrayList<Locatable> ent1 = new ArrayList<Locatable>();
 			Snake player = new Snake(theEnv, new Location(10,10));
 			theEnv.add(new SnakePart(theEnv, new Location(10,10)));
@@ -123,7 +148,8 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 			ent1.add(player);
 			ent1.add(new Food(theEnv, new Location(20, 20)));
 			//ent1.add(new Coin(theEnv));
-			Level level1 = new Level(theEnv, true, new ArrayList<Locatable>(Arrays.asList(theEnv.allObjects())), 1, score);
+			Level level1 = new Level(theEnv, true, new ArrayList<Locatable>(Arrays.asList(theEnv.allObjects())), 5, score);
+			levels[0] = level1;
 			
 			while(!level1.isOver())
 			{
@@ -132,7 +158,7 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 				level1.simStep(inputDir, player);
 				//ent = level1.getEntities();
 				w.repaint();
-				delay(200);
+				delay(120);
 			}
 			score += level1.getScore();
 			if(level1.won())
@@ -150,20 +176,21 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 			delay(2000);
 			
 			theEnv.removeAll();
-			/*end level block*/
+			
 			
 			if(success)
 			{
 				success = false;
-				/*start level block*/
+				
 				ArrayList<Locatable> ent2 = new ArrayList<Locatable>();
-				player = new Snake(theEnv, new Location(10,10));
-				theEnv.add(new SnakePart(theEnv, new Location(10,10)));
+				player = new Snake(theEnv, new Location(5,10));
+				theEnv.add(new SnakePart(theEnv, new Location(5,10)));
 				ent2.add(player);
 				ent2.add(new Food(theEnv, new Location(20, 20)));
-				ent2.add(new Turret(theEnv, new Location(5,5), Direction.EAST, 3));
+				ent2.add(new Turret(theEnv, new Location(10,1), Direction.EAST, 4));
 				//ent1.add(new Coin(theEnv));
-				Level level2 = new Level(theEnv, false, ent2, 10, score);
+				Level level2 = new Level(theEnv, true, ent2, 10, score);
+				levels[1] = level2;
 				
 				while(!level2.isOver())
 				{
@@ -175,7 +202,7 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 					w.repaint();
 					//System.out.println(ent.get(ent.size()-1).location().get(0).toString());
 					//paint level
-					delay(200);
+					delay(120);
 				}
 				score += level1.getScore();
 				if(level2.won())
@@ -191,12 +218,59 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 				}
 				w.repaint();
 				delay(2000);
-				/*end level block*/
+			
 			}
 		}while(resPress);
 		gameOver = true;
+		*/
 		
-	}
+		
+		do
+		{
+			for(int i = 0; i < levels.length; i++)
+			{
+				if(success)
+					{
+						success = false;
+						/*start level block*/
+						
+						for(int j = 0; j < levels[i].getEntities().size(); j++)
+							theEnv.add(levels[i].getEntities().get(j));
+						
+						while(!level2.isOver())
+						{
+							theLvl = level2;
+							currLvl = 2;
+							System.out.println(inputDir.toString());
+							level2.simStep(inputDir, player);
+							//ent = level2.getEntities();
+							w.repaint();
+							//System.out.println(ent.get(ent.size()-1).location().get(0).toString());
+							//paint level
+							delay(120);
+						}
+						score += level1.getScore();
+						if(level2.won())
+						{
+							success = true;
+						}
+						else
+						{
+							restartScreen = true;
+							w.repaint();
+							delay(10000);
+							success = false;
+						}
+						w.repaint();
+						delay(2000);
+						/*end level block*/
+					}
+				}
+				theEnv.removeAll();
+		 }while(resPress);
+		 gameOver = true;
+			
+		}
 	
 	public void paintLoc(Location loc, Graphics gr, Color c)
 	{

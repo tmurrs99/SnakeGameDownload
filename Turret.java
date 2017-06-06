@@ -52,10 +52,10 @@ public class Turret implements Locatable
 		if(bullets.size() == 0)
 			return;
 		
-		if(bullets.get(0).location().get(0).row() >= theEnv.numRows()-1 || 
-				bullets.get(0).location().get(0).col() >= theEnv.numCols()-1 ||
-				bullets.get(0).location().get(0).row() < 1 ||
-				bullets.get(0).location().get(0).col() < 1)
+		if(bullets.get(0).location().get(0).row() >= theEnv.numRows()-2 || 
+				bullets.get(0).location().get(0).col() >= theEnv.numCols()-2 ||
+				bullets.get(0).location().get(0).row() < 2 ||
+				bullets.get(0).location().get(0).col() < 2)
 		{
 			bullets.get(0).move(true);
 			bullets.remove(0);

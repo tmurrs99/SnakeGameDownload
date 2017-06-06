@@ -114,10 +114,11 @@ public class Snake implements Locatable
 		}
 		else
 		{
-			if(length > 1 && this.location().get(0).nextTo(dir).equals(this.location().get(1)))
+			if(length > 1 && parts.get(0).location().get(0).nextTo(dir).equals(parts.get(1).location().get(0)))
 			{
 				//locs.add(0, new Location(locs.get(0).nextTo(dir.reverse()).row(), locs.get(0).nextTo(dir.reverse()).col()));
 				//locs.remove(locs.size()-1);
+				System.out.println("You cant go backwards, dude");
 				this.setDirection(dir.reverse());
 			}
 			if(parts.get(0).location().get(0).row() >= theEnv.numRows() && dir.equals(Direction.SOUTH))
@@ -159,6 +160,7 @@ public class Snake implements Locatable
 			}
 			else
 			{
+				System.out.println("Direction: " +dir.toString());
 				locs.add(0, new Location(locs.get(0).nextTo(dir).row(), locs.get(0).nextTo(dir).col()));
 				parts.add(0, new SnakePart(theEnv, new Location(locs.get(0).nextTo(dir).row(), locs.get(0).nextTo(dir).col())));
 				theEnv.add(new SnakePart(theEnv, locs.get(0)));
