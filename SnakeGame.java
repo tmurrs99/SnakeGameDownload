@@ -118,25 +118,27 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 			restartScreen = false;
 			resCounter = 10;
 			
-			ArrayList<Locatable> ent1 = new ArrayList<Locatable>();
-			Snake player = new Snake(theEnv, new Location(10,10));
-			theEnv.add(new SnakePart(theEnv, new Location(10,10)));
-			theEnv.add(new Obstacle(theEnv, new Location(17,17)));theEnv.add(new Obstacle(theEnv, new Location(18,18)));
-			theEnv.add(new Obstacle(theEnv, new Location(19,19)));theEnv.add(new Obstacle(theEnv, new Location(5,5)));
-			theEnv.add(new Obstacle(theEnv, new Location(6,6)));theEnv.add(new Obstacle(theEnv, new Location(7,7)));
-			theEnv.add(new Obstacle(theEnv, new Location(17,5)));theEnv.add(new Obstacle(theEnv, new Location(18,6)));
-			theEnv.add(new Obstacle(theEnv, new Location(19,7)));theEnv.add(new Obstacle(theEnv, new Location(5,17)));
-			theEnv.add(new Obstacle(theEnv, new Location(6,18)));theEnv.add(new Obstacle(theEnv, new Location(7,19)));
-			ent1.add(player);
-			ent1.add(new Food(theEnv, new Location(21, 21)));
-			Level level1 = new Level(theEnv, true, new ArrayList<Locatable>(Arrays.asList(theEnv.allObjects())), 5, score);
+			//Level 1
+				ArrayList<Locatable> ent1 = new ArrayList<Locatable>();
+				Snake player = new Snake(theEnv, new Location(10,10));
+				theEnv.add(new SnakePart(theEnv, new Location(10,10)));
+				theEnv.add(new Obstacle(theEnv, new Location(17,17)));theEnv.add(new Obstacle(theEnv, new Location(18,18)));
+				theEnv.add(new Obstacle(theEnv, new Location(19,19)));theEnv.add(new Obstacle(theEnv, new Location(5,5)));
+				theEnv.add(new Obstacle(theEnv, new Location(6,6)));theEnv.add(new Obstacle(theEnv, new Location(7,7)));
+				theEnv.add(new Obstacle(theEnv, new Location(17,5)));theEnv.add(new Obstacle(theEnv, new Location(18,6)));
+				theEnv.add(new Obstacle(theEnv, new Location(19,7)));theEnv.add(new Obstacle(theEnv, new Location(5,17)));
+				theEnv.add(new Obstacle(theEnv, new Location(6,18)));theEnv.add(new Obstacle(theEnv, new Location(7,19)));
+				ent1.add(player);
+				ent1.add(new Food(theEnv, new Location(21, 21)));
+				Level level1 = new Level(theEnv, true, new ArrayList<Locatable>(Arrays.asList(theEnv.allObjects())), 5, score);
+				
+				inputDir = null;
+				runLvl(level1, w, player);
+				w.repaint();
+				delay(2000);
+				theEnv.removeAll();
 			
-			inputDir = null;
-			runLvl(level1, w, player);
-			w.repaint();
-			delay(2000);
-			theEnv.removeAll();
-			
+			//Level 2
 			if(success)
 			{
 				success = false;
@@ -148,7 +150,8 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 				ent2.add(new Food(theEnv, new Location(20, 20)));
 				ent2.add(new Turret(theEnv, new Location(10,1), Direction.EAST, 4));
 				//ent1.add(new Coin(theEnv));
-				Level level2 = new Level(theEnv, true, ent2, 10, score);
+				Level level2 = new Level(theEnv, true, ent2, 7, score);
+				
 				
 				inputDir = null;
 				runLvl(level2, w, player);
@@ -156,8 +159,123 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 				w.repaint();
 				delay(2000);
 				theEnv.removeAll();
-			
 			}
+			
+			//Level 3
+			if(success)
+			{
+				success = false;
+				
+				ArrayList<Locatable> ent3 = new ArrayList<Locatable>();
+				player = new Snake(theEnv, new Location(5,10));
+				theEnv.add(new SnakePart(theEnv, new Location(5,10)));
+				ent3.add(player);
+				ent3.add(new Food(theEnv, new Location(20, 20)));
+				
+				//Adding turrets and obstacles goes here
+				
+				Level level3 = new Level(theEnv, true, ent3, 10, score);
+				
+				inputDir = null;
+				runLvl(level3, w, player);
+				
+				w.repaint();
+				delay(2000);
+				theEnv.removeAll();
+			}
+			
+			//Level 4
+			if(success)
+			{
+				success = false;
+				
+				ArrayList<Locatable> ent3 = new ArrayList<Locatable>();
+				player = new Snake(theEnv, new Location(5,10));
+				theEnv.add(new SnakePart(theEnv, new Location(5,10)));
+				ent3.add(player);
+				ent3.add(new Food(theEnv, new Location(20, 20)));
+				
+				//Adding turrets and obstacles goes here
+				
+				Level level3 = new Level(theEnv, true, ent3, 10, score);
+				
+				inputDir = null;
+				runLvl(level3, w, player);
+				
+				w.repaint();
+				delay(2000);
+				theEnv.removeAll();
+			}
+			
+			//Level 5
+			if(success)
+			{
+				success = false;
+				
+				ArrayList<Locatable> ent3 = new ArrayList<Locatable>();
+				player = new Snake(theEnv, new Location(5,10));
+				theEnv.add(new SnakePart(theEnv, new Location(5,10)));
+				ent3.add(player);
+				ent3.add(new Food(theEnv, new Location(20, 20)));
+				
+				//Adding turrets and obstacles goes here
+				
+				Level level3 = new Level(theEnv, true, ent3, 10, score);
+				
+				inputDir = null;
+				runLvl(level3, w, player);
+				
+				w.repaint();
+				delay(2000);
+				theEnv.removeAll();
+			}
+			
+			//Level 6
+			if(success)
+			{
+				success = false;
+				
+				ArrayList<Locatable> ent3 = new ArrayList<Locatable>();
+				player = new Snake(theEnv, new Location(5,10));
+				theEnv.add(new SnakePart(theEnv, new Location(5,10)));
+				ent3.add(player);
+				ent3.add(new Food(theEnv, new Location(20, 20)));
+				
+				//Adding turrets and obstacles goes here
+				
+				Level level3 = new Level(theEnv, true, ent3, 10, score);
+				
+				inputDir = null;
+				runLvl(level3, w, player);
+				
+				w.repaint();
+				delay(2000);
+				theEnv.removeAll();
+			}
+			
+			//Level 7
+			if(success)
+			{
+				success = false;
+				
+				ArrayList<Locatable> ent3 = new ArrayList<Locatable>();
+				player = new Snake(theEnv, new Location(5,10));
+				theEnv.add(new SnakePart(theEnv, new Location(5,10)));
+				ent3.add(player);
+				ent3.add(new Food(theEnv, new Location(20, 20)));
+				
+				//Adding turrets and obstacles goes here
+				
+				Level level3 = new Level(theEnv, true, ent3, 10, score);
+				
+				inputDir = null;
+				runLvl(level3, w, player);
+				
+				w.repaint();
+				delay(2000);
+				theEnv.removeAll();
+			}
+			
 		}while(resPress);
 		System.out.println("out of dowhile");
 		restartScreen = false;
@@ -172,7 +290,6 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 		while(!lvl.isOver())
 		{
 			theLvl = lvl;
-			currLvl = 2;
 			//System.out.println(inputDir.toString());
 			if(inputDir == null || p.getDirection() == null) {}
 			else if(inputDir.equals(p.getDirection().reverse()) && p.getLength() > 1)
