@@ -104,12 +104,16 @@ public class Snake implements Locatable
 				theEnv.add(new SnakePart(theEnv, locs.get(0)));
 				length++;
 			}
-			else
+			else if(!dir.equals(null))
 			{
 				locs.add(0, new Location(locs.get(0).nextTo(dir).row(), locs.get(0).nextTo(dir).col()));
 				parts.add(0, new SnakePart(theEnv, new Location(locs.get(0).nextTo(dir).row(), locs.get(0).nextTo(dir).col())));
 				theEnv.add(new SnakePart(theEnv, locs.get(0)));
 				length++;
+			}
+			else
+			{
+				return;
 			}
 		}
 		else
@@ -158,7 +162,7 @@ public class Snake implements Locatable
 				System.out.println("env remove");
 				locs.remove(locs.size()-1);
 			}
-			else
+			else if(!(dir == null))
 			{
 				System.out.println("Direction: " +dir.toString());
 				locs.add(0, new Location(locs.get(0).nextTo(dir).row(), locs.get(0).nextTo(dir).col()));
@@ -168,6 +172,10 @@ public class Snake implements Locatable
 				theEnv.remove(theEnv.objectAt(locs.get(length)));
 				System.out.println("env remove");
 				locs.remove(locs.size()-1);
+			}
+			else
+			{
+				return;
 			}
 			
 			
