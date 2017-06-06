@@ -121,9 +121,14 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 			ArrayList<Locatable> ent1 = new ArrayList<Locatable>();
 			Snake player = new Snake(theEnv, new Location(10,10));
 			theEnv.add(new SnakePart(theEnv, new Location(10,10)));
-			theEnv.add(new Obstacle(theEnv, new Location(15,15), 2, 2));
+			theEnv.add(new Obstacle(theEnv, new Location(17,17)));theEnv.add(new Obstacle(theEnv, new Location(18,18)));
+			theEnv.add(new Obstacle(theEnv, new Location(19,19)));theEnv.add(new Obstacle(theEnv, new Location(5,5)));
+			theEnv.add(new Obstacle(theEnv, new Location(6,6)));theEnv.add(new Obstacle(theEnv, new Location(7,7)));
+			theEnv.add(new Obstacle(theEnv, new Location(17,5)));theEnv.add(new Obstacle(theEnv, new Location(18,6)));
+			theEnv.add(new Obstacle(theEnv, new Location(19,7)));theEnv.add(new Obstacle(theEnv, new Location(5,17)));
+			theEnv.add(new Obstacle(theEnv, new Location(6,18)));theEnv.add(new Obstacle(theEnv, new Location(7,19)));
 			ent1.add(player);
-			ent1.add(new Food(theEnv, new Location(20, 20)));
+			ent1.add(new Food(theEnv, new Location(21, 21)));
 			Level level1 = new Level(theEnv, true, new ArrayList<Locatable>(Arrays.asList(theEnv.allObjects())), 5, score);
 			
 			inputDir = null;
