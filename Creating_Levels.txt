@@ -1,0 +1,46 @@
+Each level has a little block that is labeled. You guys just have to plug in some code.
+Here is what you can control:
+-where the obstacles are
+-where the turrets are, how often they shoot, and which direction they shoot in
+-where the first piece of food is
+-how much food you must eat to beat the level
+-where you spawn
+
+Note: dont spawn two objects in the same location
+Note: the outer ring is occupied by obstacles so the grid goes from 1-23, inclusive
+
+THe first thing you have to edit is this:
+player = new Snake(theEnv, new Location(5,10));
+     -you guys will change the numbers in Location(5, 10) to the spawn location you want, and only those numbers
+     - i.e. you could make it say: player = new Snake(theEnv, new Location(10,10));
+     -(its in row,column form. Just like a matrix/ 2D array. This is the same forany other time you see Location(r, c))
+     -(this grid is square and goes from 0 to 24, you can place objects in spaces 1-23 due to the fact that the grid is bounded)
+     -you will also have to plug the same numbersyou did before into the line:
+           theEnv.add(new SnakePart(theEnv, new Location(5,10)));
+     
+THe next thing is:
+ent3.add(new Food(theEnv, new Location(20, 20)));
+     -here yoou will plug in the location for the food
+
+And then you will spawn obstacles,
+you will simply copy and paste this line:
+theEnv.add(new Obstacle(theEnv, new Location(17,17)));
+      -you will then just change the location
+      -you have to recopy this line for each obstacle you spawn, changing the location each time
+      
+then you will spawn turrets
+copy and paste this line:
+ent2.add(new Turret(theEnv, new Location(10,1), Direction.EAST, 4));
+     - first you must make sure that the number after "ent" matches the level number
+     -then you must chang the location
+     -then the direction is the next parameter.
+     -the next number is the fire delay. THis number minus 1 will always be the amount of leeway the snake
+     has when passing through turret fire.
+     
+And lastly,
+you change this line:
+Level level2 = new Level(theEnv, true, ent2, 7, score);
+     -make sure that the level matches your level.
+     - then only change the fourth parameter to the amount of food that should be required to be eaten to
+     pass the level.
+
