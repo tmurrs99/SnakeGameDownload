@@ -133,7 +133,7 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 				theEnv.add(new Obstacle(theEnv, new Location(6,18)));theEnv.add(new Obstacle(theEnv, new Location(7,19)));
 				ent1.add(player);
 				ent1.add(new Food(theEnv, new Location(21, 21)));
-				Level level1 = new Level(theEnv, true, new ArrayList<Locatable>(Arrays.asList(theEnv.allObjects())), 7);
+				Level level1 = new Level(theEnv, true, new ArrayList<Locatable>(Arrays.asList(theEnv.allObjects())), 1);
 				
 				inputDir = null;
 				runLvl(level1, w, player);
@@ -153,7 +153,7 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 				ent2.add(new Food(theEnv, new Location(20, 20)));
 				ent2.add(new Turret(theEnv, new Location(10,1), Direction.EAST, 4));
 				//ent1.add(new Coin(theEnv));
-				Level level2 = new Level(theEnv, true, ent2, 7);
+				Level level2 = new Level(theEnv, true, ent2, 1);
 				
 				
 				inputDir = null;
@@ -188,7 +188,7 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 				theEnv.add(new Obstacle(theEnv, new Location (19,15)));theEnv.add(new Obstacle(theEnv, new Location (19,23)));
 				ent3.add(new Turret(theEnv, new Location(13,23), Direction.WEST, 4));
 				
-				Level level3 = new Level(theEnv, true, ent3, 5); 
+				Level level3 = new Level(theEnv, true, ent3, 1); 
 				
 				inputDir = null;
 				runLvl(level3, w, player);
@@ -228,7 +228,7 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 				ent4.add(new Turret(theEnv, new Location(1,9), Direction.SOUTH, 4));
 				ent4.add(new Turret(theEnv, new Location(23,21), Direction.NORTH, 4));
 				
-				Level level4 = new Level(theEnv, true, ent4, 6);
+				Level level4 = new Level(theEnv, true, ent4, 1);
 				
 				inputDir = null;
 				runLvl(level4, w, player);
@@ -364,6 +364,7 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 		{
 			restartScreen = true;
 			resPress = false;
+			currLvl = 0;
 			while(resCounter > 0 && !resPress)
 			{
 				window.repaint();
