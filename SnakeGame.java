@@ -366,7 +366,7 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 		g.fillRect(11*k, 6*k, k, 2*k);
 		g.fillRect(12*k, 8*k, k, 2*k);
 		g.setFont(new Font("Courier", Font.PLAIN, 20));
-		g.drawString("(Press the spacebar to begin)", 160, 425);
+		g.drawString("(Press the spacebar to begin)", 120, 425);
 		g.drawString("(Use WASD to move)", 175, 450);
 		g.setFont(new Font("Courier", Font.PLAIN, 12));
 		g.drawString("Created by: Tyler Murray, Naheen Iqra, Jesse Wadler, and Squid", 150, 595);
