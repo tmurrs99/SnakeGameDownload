@@ -49,7 +49,7 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 		if(titleScreen)
 		{
 			paintTitle(g);
-			for(long i = 0; i < 100000000; i++);
+			//for(long i = 0; i < 100000000; i++);
 		}
 		else if(success)
 		{
@@ -83,7 +83,8 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 			g.setColor(Color.WHITE);
 			g.drawString("Level: " +currLvl, 60, 575);
 			g.drawString("Food Eaten: " +theLvl.getFoodEaten() +"/" +theLvl.getFoodReq(), 140, 575);
-			g.drawString("Points: " +theLvl.getScore() +", prev. total= " +score, 250, 575);
+			g.drawString("Points: " +theLvl.getScore() +", Total = " +(score + theLvl.getScore()), 250, 575);
+			g.drawString("Time: " +theLvl.getClock(), 400, 575);
 			
 			for(int i = 0; i < theEnv.numObjects(); i++)
 			{
@@ -117,6 +118,7 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 			
 			restartScreen = false;
 			resCounter = 10;
+			score = 0;
 			
 			//Level 1
 				ArrayList<Locatable> ent1 = new ArrayList<Locatable>();
@@ -277,7 +279,6 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 			}
 			
 		}while(resPress);
-		System.out.println("out of dowhile");
 		restartScreen = false;
 		gameOver = true;
 		w.repaint();
@@ -310,11 +311,12 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 			while(resCounter > 0 && !resPress)
 			{
 				window.repaint();
-				System.out.println(resPress);
 			}
 			success = false;
 		}
 	}
+	
+	//Various paint methods
 	
 	public void paintLoc(Location loc, Graphics gr, Color c)
 	{
@@ -331,8 +333,10 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 		g.fillRect(0, 0, GRID_LENGTH+100, GRID_LENGTH+100);
 		g.setFont(new Font("Courier", Font.PLAIN, 18));
 		g.setColor(Color.WHITE);
-		g.drawString("Press R to Restart " +resCounter, 100, 270);
+		g.drawString("Press \"R\" to Restart " +resCounter, 170, 270);
 		g.drawString("Final Score: " +score, 200, 300);
+		if(resPress)
+			g.drawString("Restarting...", 230, 350);
 	}
 	
 	public void paintTitle(Graphics g)
@@ -361,8 +365,11 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 		g.fillRect(10*k, 4*k, k, 2*k);
 		g.fillRect(11*k, 6*k, k, 2*k);
 		g.fillRect(12*k, 8*k, k, 2*k);
-		g.drawString("(Press SpaceBar to begin)", 250, 450);
-		g.drawString("(Use WASD to move)", 250, 475);
+		g.setFont(new Font("Courier", Font.PLAIN, 20));
+		g.drawString("(Press the spacebar to begin)", 160, 425);
+		g.drawString("(Use WASD to move)", 175, 450);
+		g.setFont(new Font("Courier", Font.PLAIN, 12));
+		g.drawString("Created by: Tyler Murray, Naheen Iqra, Jesse Wadler, and Squid", 150, 595);
 		
 		g.setColor(Color.BLACK);
 		g.fillRect(3*k, 4*k, 3*k, 2*k);
