@@ -12,7 +12,7 @@ public class Level
 	private int foodRequired;
 	private boolean over = false;
 	private boolean won = false;
-	private int score;
+	private int score = 0;
 	//private Location[] foods;
 	
 	public Level(SnakeEnv env)
@@ -20,12 +20,12 @@ public class Level
 		entities = new ArrayList<Locatable>();
 		theEnv = env;
 	}
-	public Level(SnakeEnv env, boolean bounded, ArrayList<Locatable> initEnt, int foodR, int s)
+	public Level(SnakeEnv env, boolean bounded, ArrayList<Locatable> initEnt, int foodR)
 	{
 		entities = new ArrayList<Locatable>();
 		theEnv = env;
 		foodRequired = foodR;
-		score = s;
+		
 		if(bounded)
 		{
 			for(int i = 0; i < theEnv.numRows(); i++)
@@ -163,6 +163,7 @@ public class Level
 				adj.move(false);
 				player.move(true);
 				foodEaten++;
+				score+=10;
 				if(foodEaten >= foodRequired)
 				{
 					//LevelComplete

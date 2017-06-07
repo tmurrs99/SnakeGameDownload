@@ -31,11 +31,7 @@ public class Bullet implements Locatable {
 	@Override
 	public void move(boolean eats)
 	{
-		if(this.location().get(0).row() == 24 || this.location().get(0).row() == 23)
-		{
-			theEnv.remove(this);
-		}
-		
+
 		if(eats)
 		{	
 			theEnv.remove(theEnv.objectAt(this.location().get(0)));

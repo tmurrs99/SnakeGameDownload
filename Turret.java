@@ -64,7 +64,13 @@ public class Turret implements Locatable
 		
 		for(int i = 0; i < bullets.size(); i++)
 		{
-			bullets.get(i).move(false);
+			if(theEnv.objectAt(bullets.get(i).location().get(0).nextTo(dir)) instanceof Obstacle)
+			{
+				bullets.get(i).move(true);
+				bullets.remove(i);
+			}
+			else
+				bullets.get(i).move(false);
 		}
 		
 	}

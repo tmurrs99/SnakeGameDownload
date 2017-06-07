@@ -62,10 +62,16 @@ public class Coin extends Pickup implements Locatable
 	public void move(boolean eats)
 	{
 		Location l;
+		boolean noTurrets = true;
 		do
 		{
 			l = new Location((int)(gen.nextDouble()*theEnv.getRows()), (int)(gen.nextDouble()*theEnv.getCols()));
-		}while(!theEnv.isEmpty(l));
+			
+			for(Direction dir : Direction.allDirections())
+				if(theEnv.objectAt(l.nextTo(dir)) instanceof Turret)
+					noTurrets = false;
+				
+		}while(!theEnv.isEmpty(l) || !noTurrets);
 		Location oldLoc = loc;
 		loc = l;
 		theEnv.recordMove(this, oldLoc);

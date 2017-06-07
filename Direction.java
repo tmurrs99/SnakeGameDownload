@@ -23,6 +23,12 @@ public enum Direction
 		}
 	}
 	
+	public static Direction[] allDirections()
+	{
+		Direction[] dirs = {Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST};
+		return dirs;
+	}
+	
 	public Direction reverse()
 	{
 		if(this == Direction.EAST)
