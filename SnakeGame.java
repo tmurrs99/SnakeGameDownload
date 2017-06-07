@@ -132,7 +132,7 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 				theEnv.add(new Obstacle(theEnv, new Location(6,18)));theEnv.add(new Obstacle(theEnv, new Location(7,19)));
 				ent1.add(player);
 				ent1.add(new Food(theEnv, new Location(21, 21)));
-				Level level1 = new Level(theEnv, true, new ArrayList<Locatable>(Arrays.asList(theEnv.allObjects())), 5, score);
+				Level level1 = new Level(theEnv, true, new ArrayList<Locatable>(Arrays.asList(theEnv.allObjects())), 10, score);
 				
 				inputDir = null;
 				runLvl(level1, w, player);

@@ -177,13 +177,13 @@ public class Level
 				player.move(false);
 				score += 5;
 			}
-			else if(adj instanceof Bullet || adj instanceof Turret || adj instanceof Obstacle)
+			else if(adj instanceof Bullet || adj instanceof Turret || adj instanceof Obstacle || adj instanceof SnakePart)
 			{
 				over = true;
 				won = false;
 				return;	
 			}
-			else if(adj instanceof SnakePart)
+			/*else if(adj instanceof SnakePart)
 			{
 				player.move(false);
 				if(player.location().get(0).equals(adj.location().get(0)))
@@ -192,7 +192,7 @@ public class Level
 					won = false;
 					return;
 				}
-			}
+			}*/
 			else
 			{
 				player.move(false);
