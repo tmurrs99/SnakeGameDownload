@@ -170,25 +170,30 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 				success = false;
 				
 				ArrayList<Locatable> ent3 = new ArrayList<Locatable>();
-				player = new Snake(theEnv, new Location(22,7));
-				theEnv.add(new SnakePart(theEnv, new Location(22,7)));
+				player = new Snake(theEnv, new Location(5,10));
+				theEnv.add(new SnakePart(theEnv, new Location(5,10)));
 				ent3.add(player);
-				ent3.add(new Food(theEnv, new Location(18, 9)));
-				theEnv.add(new Obstacle(theEnv, new Location (6,2)));theEnv.add(new Obstacle(theEnv, new Location (6,12)));
-				theEnv.add(new Obstacle(theEnv, new Location (6,20)));theEnv.add(new Obstacle(theEnv, new Location (7,3)));
-				theEnv.add(new Obstacle(theEnv, new Location (7,13)));theEnv.add(new Obstacle(theEnv, new Location (7,21)));
-				theEnv.add(new Obstacle(theEnv, new Location (8,4)));theEnv.add(new Obstacle(theEnv, new Location (8,14)));
-				theEnv.add(new Obstacle(theEnv, new Location (8,22)));theEnv.add(new Obstacle(theEnv, new Location (9,5)));
-				theEnv.add(new Obstacle(theEnv, new Location (9,15)));theEnv.add(new Obstacle(theEnv, new Location (9,23)));
-				theEnv.add(new Obstacle(theEnv, new Location (16,2)));theEnv.add(new Obstacle(theEnv, new Location (16,12)));
-				theEnv.add(new Obstacle(theEnv, new Location (16,20)));theEnv.add(new Obstacle(theEnv, new Location (17,3)));
-				theEnv.add(new Obstacle(theEnv, new Location (17,13)));theEnv.add(new Obstacle(theEnv, new Location (17,21)));
-				theEnv.add(new Obstacle(theEnv, new Location (18,4)));theEnv.add(new Obstacle(theEnv, new Location (18,14)));
-				theEnv.add(new Obstacle(theEnv, new Location (18,22)));theEnv.add(new Obstacle(theEnv, new Location (19,5)));
-				theEnv.add(new Obstacle(theEnv, new Location (19,15)));theEnv.add(new Obstacle(theEnv, new Location (19,23)));
-				ent3.add(new Turret(theEnv, new Location(13,23), Direction.WEST, 4));
+				ent3.add(new Food(theEnv, new Location(20, 20)));
 				
-				Level level3 = new Level(theEnv, true, ent3, 1); 
+				theEnv.add(new Obstacle(theEnv, new Location(13,3)));theEnv.add(new Obstacle(theEnv, new Location(11,14)));
+				theEnv.add(new Obstacle(theEnv, new Location(3,8)));theEnv.add(new Obstacle(theEnv, new Location(18,7)));
+				theEnv.add(new Obstacle(theEnv, new Location(23,2)));theEnv.add(new Obstacle(theEnv, new Location(2,7)));
+				theEnv.add(new Obstacle(theEnv, new Location(23,8)));theEnv.add(new Obstacle(theEnv, new Location(7,7)));
+				theEnv.add(new Obstacle(theEnv, new Location(11,23)));theEnv.add(new Obstacle(theEnv, new Location(6,1)));
+				theEnv.add(new Obstacle(theEnv, new Location(12,23)));theEnv.add(new Obstacle(theEnv, new Location(5,9)));
+				theEnv.add(new Obstacle(theEnv, new Location(21,15)));theEnv.add(new Obstacle(theEnv, new Location(13,17)));
+				theEnv.add(new Obstacle(theEnv, new Location(11,17)));theEnv.add(new Obstacle(theEnv, new Location(4,11)));
+				theEnv.add(new Obstacle(theEnv, new Location(20,15)));theEnv.add(new Obstacle(theEnv, new Location(18,2)));
+				theEnv.add(new Obstacle(theEnv, new Location(17,18)));theEnv.add(new Obstacle(theEnv, new Location(13,4)));
+				theEnv.add(new Obstacle(theEnv, new Location(8,3)));theEnv.add(new Obstacle(theEnv, new Location(17,11)));
+				theEnv.add(new Obstacle(theEnv, new Location(8,21)));theEnv.add(new Obstacle(theEnv, new Location(3,2)));
+				theEnv.add(new Obstacle(theEnv, new Location(21,2)));theEnv.add(new Obstacle(theEnv, new Location(17,20)));
+				theEnv.add(new Obstacle(theEnv, new Location(2,17)));theEnv.add(new Obstacle(theEnv, new Location(14,13)));
+				theEnv.add(new Obstacle(theEnv, new Location(11,10)));theEnv.add(new Obstacle(theEnv, new Location(14,3)));
+				theEnv.add(new Obstacle(theEnv, new Location(7,14)));
+				//Adding turrets and obstacles goes here
+				
+				Level level3 = new Level(theEnv, true, ent3, 10);
 				
 				inputDir = null;
 				runLvl(level3, w, player);
@@ -204,51 +209,11 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 				success = false;
 				
 				ArrayList<Locatable> ent4 = new ArrayList<Locatable>();
-				player = new Snake(theEnv, new Location(11,4));
-				theEnv.add(new SnakePart(theEnv, new Location(11,4)));
-				ent4.add(player);
-				ent4.add(new Food(theEnv, new Location(11,17)));
-				theEnv.add(new Obstacle(theEnv, new Location (5,2)));theEnv.add(new Obstacle(theEnv, new Location (5,5)));
-				theEnv.add(new Obstacle(theEnv, new Location (5,15)));theEnv.add(new Obstacle(theEnv, new Location (5,18)));
-				theEnv.add(new Obstacle(theEnv, new Location (6,3)));theEnv.add(new Obstacle(theEnv, new Location (6,4)));
-				theEnv.add(new Obstacle(theEnv, new Location (6,16)));theEnv.add(new Obstacle(theEnv, new Location (6,17)));
-				theEnv.add(new Obstacle(theEnv, new Location (7,3)));theEnv.add(new Obstacle(theEnv, new Location (7,4)));
-				theEnv.add(new Obstacle(theEnv, new Location (7,16)));theEnv.add(new Obstacle(theEnv, new Location (7,17)));
-				theEnv.add(new Obstacle(theEnv, new Location (8,2)));theEnv.add(new Obstacle(theEnv, new Location (8,5)));
-				theEnv.add(new Obstacle(theEnv, new Location (8,15)));theEnv.add(new Obstacle(theEnv, new Location (8,18)));
-				theEnv.add(new Obstacle(theEnv, new Location (16,2)));theEnv.add(new Obstacle(theEnv, new Location (16,5)));
-				theEnv.add(new Obstacle(theEnv, new Location (16,15)));theEnv.add(new Obstacle(theEnv, new Location (16,18)));
-				theEnv.add(new Obstacle(theEnv, new Location (17,3)));theEnv.add(new Obstacle(theEnv, new Location (17,4)));
-				theEnv.add(new Obstacle(theEnv, new Location (17,16)));theEnv.add(new Obstacle(theEnv, new Location (17,17)));
-				theEnv.add(new Obstacle(theEnv, new Location (18,3)));theEnv.add(new Obstacle(theEnv, new Location (18,4)));
-				theEnv.add(new Obstacle(theEnv, new Location (18,16)));theEnv.add(new Obstacle(theEnv, new Location (18,17)));
-				theEnv.add(new Obstacle(theEnv, new Location (19,2)));theEnv.add(new Obstacle(theEnv, new Location (19,5)));
-				theEnv.add(new Obstacle(theEnv, new Location (19,15)));theEnv.add(new Obstacle(theEnv, new Location (19,18)));
-				
-				ent4.add(new Turret(theEnv, new Location(1,9), Direction.SOUTH, 4));
-				ent4.add(new Turret(theEnv, new Location(23,21), Direction.NORTH, 4));
-				
-				Level level4 = new Level(theEnv, true, ent4, 1);
-				
-				inputDir = null;
-				runLvl(level4, w, player);
-				
-				w.repaint();
-				delay(2000);
-				theEnv.removeAll();
-			}
-			
-			//Level 5
-			if(success)
-			{
-				success = false;
-				
-				ArrayList<Locatable> ent5 = new ArrayList<Locatable>();
 				 
 				player = new Snake(theEnv, new Location(21,6));
 				theEnv.add(new SnakePart(theEnv, new Location(21,6)));
-				ent5.add(new Food(theEnv, new Location(21,10)));
-				ent5.add(player);
+				ent4.add(new Food(theEnv, new Location(21,10)));
+				ent4.add(player);
 				
 				theEnv.add(new Obstacle(theEnv, new Location (2,4)));
 				theEnv.add(new Obstacle(theEnv, new Location (2,5)));theEnv.add(new Obstacle(theEnv, new Location (2,8)));
@@ -272,15 +237,139 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 				theEnv.add(new Obstacle(theEnv, new Location (20,12)));theEnv.add(new Obstacle(theEnv, new Location (20,13)));
 				theEnv.add(new Obstacle(theEnv, new Location (21,12)));theEnv.add(new Obstacle(theEnv, new Location (21,13)));
 				
-				ent5.add(new Turret(theEnv, new Location(3,3), Direction.WEST, 4));
-				ent5.add(new Turret(theEnv, new Location(3,22), Direction.EAST, 4));
-				ent5.add(new Turret(theEnv, new Location(6,6), Direction.SOUTH, 4));
-				ent5.add(new Turret(theEnv, new Location(6,19), Direction.SOUTH, 4));
+				ent4.add(new Turret(theEnv, new Location(3,3), Direction.WEST, 4));
+				ent4.add(new Turret(theEnv, new Location(3,22), Direction.EAST, 4));
+				ent4.add(new Turret(theEnv, new Location(6,6), Direction.SOUTH, 4));
+				ent4.add(new Turret(theEnv, new Location(6,19), Direction.SOUTH, 4));
 				//Adding turrets and obstacles goes here
-				Level level5 = new Level(theEnv, true, ent5, 8);
+				Level level4 = new Level(theEnv, true, ent4, 8);
+				
+				inputDir = null;
+				runLvl(level4, w, player);
+				
+				w.repaint();
+				delay(2000);
+				theEnv.removeAll();
+			}
+			
+			
+			//Level 5
+			if(success)
+			{
+				success = false;
+				
+				ArrayList<Locatable> ent5 = new ArrayList<Locatable>();
+				player = new Snake(theEnv, new Location(22,7));
+				theEnv.add(new SnakePart(theEnv, new Location(22,7)));
+				ent5.add(player);
+				ent5.add(new Food(theEnv, new Location(18, 9)));
+				theEnv.add(new Obstacle(theEnv, new Location (6,2)));theEnv.add(new Obstacle(theEnv, new Location (6,12)));
+				theEnv.add(new Obstacle(theEnv, new Location (6,20)));theEnv.add(new Obstacle(theEnv, new Location (7,3)));
+				theEnv.add(new Obstacle(theEnv, new Location (7,13)));theEnv.add(new Obstacle(theEnv, new Location (7,21)));
+				theEnv.add(new Obstacle(theEnv, new Location (8,4)));theEnv.add(new Obstacle(theEnv, new Location (8,14)));
+				theEnv.add(new Obstacle(theEnv, new Location (8,22)));theEnv.add(new Obstacle(theEnv, new Location (9,5)));
+				theEnv.add(new Obstacle(theEnv, new Location (9,15)));theEnv.add(new Obstacle(theEnv, new Location (9,23)));
+				theEnv.add(new Obstacle(theEnv, new Location (16,2)));theEnv.add(new Obstacle(theEnv, new Location (16,12)));
+				theEnv.add(new Obstacle(theEnv, new Location (16,20)));theEnv.add(new Obstacle(theEnv, new Location (17,3)));
+				theEnv.add(new Obstacle(theEnv, new Location (17,13)));theEnv.add(new Obstacle(theEnv, new Location (17,21)));
+				theEnv.add(new Obstacle(theEnv, new Location (18,4)));theEnv.add(new Obstacle(theEnv, new Location (18,14)));
+				theEnv.add(new Obstacle(theEnv, new Location (18,22)));theEnv.add(new Obstacle(theEnv, new Location (19,5)));
+				theEnv.add(new Obstacle(theEnv, new Location (19,15)));theEnv.add(new Obstacle(theEnv, new Location (19,23)));
+				ent5.add(new Turret(theEnv, new Location(13,23), Direction.WEST, 4));
+				
+				Level level5 = new Level(theEnv, true, ent5, 1); 
 				
 				inputDir = null;
 				runLvl(level5, w, player);
+				
+				w.repaint();
+				delay(2000);
+				theEnv.removeAll();
+			}
+			
+			//Level 6
+			if(success)
+			{
+				success = false;
+				
+				ArrayList<Locatable> ent6 = new ArrayList<Locatable>();
+				player = new Snake(theEnv, new Location(11,4));
+				theEnv.add(new SnakePart(theEnv, new Location(11,4)));
+				ent6.add(player);
+				ent6.add(new Food(theEnv, new Location(11,17)));
+				theEnv.add(new Obstacle(theEnv, new Location (5,2)));theEnv.add(new Obstacle(theEnv, new Location (5,5)));
+				theEnv.add(new Obstacle(theEnv, new Location (5,15)));theEnv.add(new Obstacle(theEnv, new Location (5,18)));
+				theEnv.add(new Obstacle(theEnv, new Location (6,3)));theEnv.add(new Obstacle(theEnv, new Location (6,4)));
+				theEnv.add(new Obstacle(theEnv, new Location (6,16)));theEnv.add(new Obstacle(theEnv, new Location (6,17)));
+				theEnv.add(new Obstacle(theEnv, new Location (7,3)));theEnv.add(new Obstacle(theEnv, new Location (7,4)));
+				theEnv.add(new Obstacle(theEnv, new Location (7,16)));theEnv.add(new Obstacle(theEnv, new Location (7,17)));
+				theEnv.add(new Obstacle(theEnv, new Location (8,2)));theEnv.add(new Obstacle(theEnv, new Location (8,5)));
+				theEnv.add(new Obstacle(theEnv, new Location (8,15)));theEnv.add(new Obstacle(theEnv, new Location (8,18)));
+				theEnv.add(new Obstacle(theEnv, new Location (16,2)));theEnv.add(new Obstacle(theEnv, new Location (16,5)));
+				theEnv.add(new Obstacle(theEnv, new Location (16,15)));theEnv.add(new Obstacle(theEnv, new Location (16,18)));
+				theEnv.add(new Obstacle(theEnv, new Location (17,3)));theEnv.add(new Obstacle(theEnv, new Location (17,4)));
+				theEnv.add(new Obstacle(theEnv, new Location (17,16)));theEnv.add(new Obstacle(theEnv, new Location (17,17)));
+				theEnv.add(new Obstacle(theEnv, new Location (18,3)));theEnv.add(new Obstacle(theEnv, new Location (18,4)));
+				theEnv.add(new Obstacle(theEnv, new Location (18,16)));theEnv.add(new Obstacle(theEnv, new Location (18,17)));
+				theEnv.add(new Obstacle(theEnv, new Location (19,2)));theEnv.add(new Obstacle(theEnv, new Location (19,5)));
+				theEnv.add(new Obstacle(theEnv, new Location (19,15)));theEnv.add(new Obstacle(theEnv, new Location (19,18)));
+				
+				ent6.add(new Turret(theEnv, new Location(1,9), Direction.SOUTH, 4));
+				ent6.add(new Turret(theEnv, new Location(23,21), Direction.NORTH, 4));
+				
+				Level level6 = new Level(theEnv, true, ent6, 1);
+				
+				inputDir = null;
+				runLvl(level6, w, player);
+				
+				w.repaint();
+				delay(2000);
+				theEnv.removeAll();
+			}
+			
+			//Level 7
+			if(success)
+			{
+				success = false;
+				
+				ArrayList<Locatable> ent7 = new ArrayList<Locatable>();
+				 
+				player = new Snake(theEnv, new Location(21,6));
+				theEnv.add(new SnakePart(theEnv, new Location(21,6)));
+				ent7.add(new Food(theEnv, new Location(21,10)));
+				ent7.add(player);
+				
+				theEnv.add(new Obstacle(theEnv, new Location (2,4)));
+				theEnv.add(new Obstacle(theEnv, new Location (2,5)));theEnv.add(new Obstacle(theEnv, new Location (2,8)));
+				theEnv.add(new Obstacle(theEnv, new Location (2,9)));theEnv.add(new Obstacle(theEnv, new Location (2,12)));
+				theEnv.add(new Obstacle(theEnv, new Location (2,13)));theEnv.add(new Obstacle(theEnv, new Location (2,16)));
+				theEnv.add(new Obstacle(theEnv, new Location (2,17)));theEnv.add(new Obstacle(theEnv, new Location (2,20)));
+				theEnv.add(new Obstacle(theEnv, new Location (2,21)));theEnv.add(new Obstacle(theEnv, new Location (3,4)));
+				theEnv.add(new Obstacle(theEnv, new Location (3,5)));theEnv.add(new Obstacle(theEnv, new Location (3,8)));
+				theEnv.add(new Obstacle(theEnv, new Location (3,9)));theEnv.add(new Obstacle(theEnv, new Location (3,12)));
+				theEnv.add(new Obstacle(theEnv, new Location (3,13)));theEnv.add(new Obstacle(theEnv, new Location (3,16)));
+				theEnv.add(new Obstacle(theEnv, new Location (3,17)));theEnv.add(new Obstacle(theEnv, new Location (3,20)));
+				theEnv.add(new Obstacle(theEnv, new Location (3,21)));theEnv.add(new Obstacle(theEnv, new Location (6,12)));
+				theEnv.add(new Obstacle(theEnv, new Location (6,13)));theEnv.add(new Obstacle(theEnv, new Location (7,12)));
+				theEnv.add(new Obstacle(theEnv, new Location (7,13)));theEnv.add(new Obstacle(theEnv, new Location (9,12)));
+				theEnv.add(new Obstacle(theEnv, new Location (9,13)));theEnv.add(new Obstacle(theEnv, new Location (10,12)));
+				theEnv.add(new Obstacle(theEnv, new Location (10,13)));theEnv.add(new Obstacle(theEnv, new Location (13,6)));
+				theEnv.add(new Obstacle(theEnv, new Location (13,12)));theEnv.add(new Obstacle(theEnv, new Location (13,13)));
+				theEnv.add(new Obstacle(theEnv, new Location (13,19)));theEnv.add(new Obstacle(theEnv, new Location (14,12)));
+				theEnv.add(new Obstacle(theEnv, new Location (14,13)));theEnv.add(new Obstacle(theEnv, new Location (16,12)));
+				theEnv.add(new Obstacle(theEnv, new Location (16,13)));theEnv.add(new Obstacle(theEnv, new Location (17,12)));
+				theEnv.add(new Obstacle(theEnv, new Location (20,12)));theEnv.add(new Obstacle(theEnv, new Location (20,13)));
+				theEnv.add(new Obstacle(theEnv, new Location (21,12)));theEnv.add(new Obstacle(theEnv, new Location (21,13)));
+				
+				ent7.add(new Turret(theEnv, new Location(3,3), Direction.WEST, 4));
+				ent7.add(new Turret(theEnv, new Location(3,22), Direction.EAST, 4));
+				ent7.add(new Turret(theEnv, new Location(6,6), Direction.SOUTH, 4));
+				ent7.add(new Turret(theEnv, new Location(6,19), Direction.SOUTH, 4));
+				//Adding turrets and obstacles goes here
+				Level level7 = new Level(theEnv, true, ent7, 8);
+				
+				inputDir = null;
+				runLvl(level7, w, player);
 				
 				w.repaint();
 				delay(2000);
