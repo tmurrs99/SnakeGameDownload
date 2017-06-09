@@ -80,12 +80,13 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 			g.fillRect(50, 45, 500, 5);
 			g.fillRect(45, 45, 5, 510);
 			g.fillRect(550, 45, 5, 510);
+			g.setFont(new Font("Courier", Font.PLAIN, 12));
 			g.setColor(Color.WHITE);
 			g.drawString("Level: " +currLvl, 60, 575);
-			g.drawString("Food Eaten: " +theLvl.getFoodEaten() +"/" +theLvl.getFoodReq(), 140, 575);
-			g.drawString("Points: " +theLvl.getScore() +"pts - " +theLvl.getClock()/(2*(int)(.5*theLvl.getFoodReq()+5))+"pts, Total = "
-					+(score + theLvl.getScore() - theLvl.getClock()/(2*(int)(.5*theLvl.getFoodReq()+5))), 250, 575);
-			g.drawString("Time: " +theLvl.getClock(), 450, 575);
+			g.drawString("Food Eaten: " +theLvl.getFoodEaten() +"/" +theLvl.getFoodReq(), 125, 575);
+			g.drawString("Points: " +theLvl.getScore() +"pts-" +theLvl.getClock()/(2*(int)(.5*theLvl.getFoodReq()+5))+"pts, Total = "
+					+(score + theLvl.getScore() - theLvl.getClock()/(2*(int)(.5*theLvl.getFoodReq()+5))), 245, 575);
+			g.drawString("Time: " +theLvl.getClock(), 470, 575);
 			
 			for(int i = 0; i < theEnv.numObjects(); i++)
 			{
@@ -133,7 +134,7 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 				theEnv.add(new Obstacle(theEnv, new Location(6,18)));theEnv.add(new Obstacle(theEnv, new Location(7,19)));
 				ent1.add(player);
 				ent1.add(new Food(theEnv, new Location(21, 21)));
-				Level level1 = new Level(theEnv, true, new ArrayList<Locatable>(Arrays.asList(theEnv.allObjects())), 1);
+				Level level1 = new Level(theEnv, true, new ArrayList<Locatable>(Arrays.asList(theEnv.allObjects())), 10);
 				
 				inputDir = null;
 				runLvl(level1, w, player);
@@ -153,7 +154,7 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 				ent2.add(new Food(theEnv, new Location(20, 20)));
 				ent2.add(new Turret(theEnv, new Location(10,1), Direction.EAST, 4));
 				//ent1.add(new Coin(theEnv));
-				Level level2 = new Level(theEnv, true, ent2, 1);
+				Level level2 = new Level(theEnv, true, ent2, 7);
 				
 				
 				inputDir = null;
@@ -193,7 +194,7 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 				theEnv.add(new Obstacle(theEnv, new Location(7,14)));
 				//Adding turrets and obstacles goes here
 				
-				Level level3 = new Level(theEnv, true, ent3, 1);
+				Level level3 = new Level(theEnv, true, ent3, 7);
 				
 				inputDir = null;
 				runLvl(level3, w, player);
@@ -242,7 +243,7 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 				ent4.add(new Turret(theEnv, new Location(6,6), Direction.SOUTH, 4));
 				ent4.add(new Turret(theEnv, new Location(6,19), Direction.SOUTH, 4));
 				//Adding turrets and obstacles goes here
-				Level level4 = new Level(theEnv, true, ent4, 1);
+				Level level4 = new Level(theEnv, true, ent4, 7);
 				
 				inputDir = null;
 				runLvl(level4, w, player);
@@ -279,7 +280,7 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 				//Fix error with weird jumping of turret when firing west
 				//ent6.add(new Turret(theEnv, new Location(13,23), Direction.WEST, 4));
 				ent6.add(new Turret(theEnv, new Location(13,1), Direction.EAST, 4));
-				Level level6 = new Level(theEnv, true, ent6, 1); 
+				Level level6 = new Level(theEnv, true, ent6, 6); 
 				
 				inputDir = null;
 				runLvl(level6, w, player);
@@ -319,7 +320,7 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 				ent7.add(new Turret(theEnv, new Location(1,9), Direction.SOUTH, 4));
 				ent7.add(new Turret(theEnv, new Location(23,21), Direction.NORTH, 4));
 				
-				Level level7 = new Level(theEnv, true, ent7, 1);
+				Level level7 = new Level(theEnv, true, ent7, 6);
 				
 				inputDir = null;
 				runLvl(level7, w, player);
@@ -365,7 +366,7 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 				theEnv.add(new Obstacle(theEnv, new Location (1,23)));
 				//Adding turrets and obstacles goes here
 				
-				Level level5 = new Level(theEnv, true, ent5, 1);
+				Level level5 = new Level(theEnv, true, ent5, 8);
 				
 				inputDir = null;
 				runLvl(level5, w, player);
