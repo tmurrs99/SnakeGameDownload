@@ -45,6 +45,12 @@ public class Turret implements Locatable
 
 		if(count == fireDelay)
 		{
+			if(!theEnv.isEmpty(new Location(center.nextTo(dir).row(), center.nextTo(dir).col())))
+			{
+				if(theEnv.objectAt(new Location(center.nextTo(dir).row(), center.nextTo(dir).col())) instanceof Food 
+						|| theEnv.objectAt(new Location(center.nextTo(dir).row(), center.nextTo(dir).col())) instanceof Coin)
+					theEnv.objectAt(new Location(center.nextTo(dir).row(), center.nextTo(dir).col())).move(false);
+			}
 			bullets.add(new Bullet(theEnv, new Location(center.nextTo(dir).row(), center.nextTo(dir).col()), dir));	
 			count = 0;
 		}
@@ -68,6 +74,11 @@ public class Turret implements Locatable
 			{
 				bullets.get(i).move(true);
 				bullets.remove(i);
+			}
+			if(theEnv.objectAt(bullets.get(i).location().get(0).nextTo(dir)) instanceof Food ||
+					theEnv.objectAt(bullets.get(i).location().get(0).nextTo(dir)) instanceof Food )
+			{
+				theEnv.objectAt(bullets.get(i).location().get(0).nextTo(dir)).move(false);
 			}
 			else
 				bullets.get(i).move(false);
