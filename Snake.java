@@ -37,9 +37,28 @@ public class Snake implements Locatable
 		length = 1;
 	}
 	
+	public Snake(Snake other)
+	{
+		this.dir = other.getDirection();
+		this.length = other.getLength();
+		this.locs = new ArrayList<Location>(other.location());
+		this.parts = new ArrayList<SnakePart>(other.getParts());
+		this.theEnv = other.getEnv();
+	}
+	
 	public ArrayList<Location> location()
 	{
 		return locs;
+	}
+	
+	public ArrayList<SnakePart> getParts()
+	{
+		return parts;
+	}
+	
+	public SnakeEnv getEnv()
+	{
+		return theEnv;
 	}
 	
 	public Color color()
@@ -60,6 +79,16 @@ public class Snake implements Locatable
 	public Direction getDirection()
 	{
 		return dir;
+	}
+	
+	public void setLocation(Location l)
+	{
+		ArrayList<Location> temp = new ArrayList<Location>();
+		temp.add(l);
+		locs = temp;
+		ArrayList<SnakePart> temp1 = new ArrayList<SnakePart>();
+		temp1.add(new SnakePart(theEnv, l));
+		parts = temp1;
 	}
 	
 	public String toString()

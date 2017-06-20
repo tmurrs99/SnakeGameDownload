@@ -37,6 +37,7 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 	private static int currLvl = 0;
 	private static Level theLvl;
 	private static SnakeEnv theEnv;
+	public static int lives = 3;
 	
 	public SnakeGame()
 	{
@@ -82,7 +83,8 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 			g.fillRect(550, 45, 5, 510);
 			g.setFont(new Font("Courier", Font.PLAIN, 12));
 			g.setColor(Color.WHITE);
-			g.drawString("Level: " +currLvl, 60, 575);
+			g.drawString("Level: " +currLvl, 50, 575);
+			g.drawString("Lives: " +lives, 120, 595);
 			g.drawString("Food Eaten: " +theLvl.getFoodEaten() +"/" +theLvl.getFoodReq(), 125, 575);
 			g.drawString("Points: " +theLvl.getScore() +"pts-" +theLvl.getClock()/(2*(int)(.5*theLvl.getFoodReq()+5))+"pts, Total = "
 					+(score + theLvl.getScore() - theLvl.getClock()/(2*(int)(.5*theLvl.getFoodReq()+5))), 245, 575);
@@ -415,34 +417,51 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 	public static void runLvl(Level lvl, SnakeGame window, Snake p)
 	{
 		currLvl++;
-		while(!lvl.isOver())
+		Snake origPlayer = new Snake(p);
+		while(lives > 0)
 		{
-			theLvl = lvl;
-			//System.out.println(inputDir.toString());
-			if(inputDir == null || p.getDirection() == null) {}
-			else if(inputDir.equals(p.getDirection().reverse()) && p.getLength() > 1)
-				inputDir = inputDir.reverse();
-			lvl.simStep(inputDir, p);
-			window.repaint();
-			delay(120);
-		}
-		score += lvl.getScore() - theLvl.getClock()/(2*(int)(.5*theLvl.getFoodReq()+5));
-		if(lvl.won())
-		{
-			success = true;
+			
+			System.out.println("Lives: " +lives);
+			while(!lvl.isOver())
+			{
+				theLvl = lvl;
+				//System.out.println(inputDir.toString());
+				if(inputDir == null || p.getDirection() == null) {}
+				else if(inputDir.equals(p.getDirection().reverse()) && p.getLength() > 1)
+					inputDir = inputDir.reverse();
+				lvl.simStep(inputDir, p);
+				window.repaint();
+				delay(120);
+			}
+			score += lvl.getScore() - theLvl.getClock()/(2*(int)(.5*theLvl.getFoodReq()+5));
+			if(lvl.won())
+			{
+				success = true;
+				
+			}
+			else
+			{
+				lives--;
+				for(int i = 0; i < p.getLength(); i++)
+					theEnv.remove(theEnv.objectAt(p.location().get(i)));
+				lvl.restart();
+				
+				p = new Snake(origPlayer);
+				p.setDirection(null);
+				inputDir = null;
+				theEnv.add(new SnakePart(theEnv, p.location().get(0)));
+			}
 			
 		}
-		else
+		restartScreen = true;
+		resPress = false;
+		currLvl = 0;
+		while(resCounter > 0 && !resPress)
 		{
-			restartScreen = true;
-			resPress = false;
-			currLvl = 0;
-			while(resCounter > 0 && !resPress)
-			{
-				window.repaint();
-			}
-			success = false;
+			window.repaint();
 		}
+		success = false;
+			
 	}
 	
 	//Various paint methods

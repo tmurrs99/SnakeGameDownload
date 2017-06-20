@@ -59,6 +59,15 @@ public class Level
 		
 	}
 	
+	public void restart()
+	{
+		clock = 0;
+		foodEaten = 0;
+		over = false;
+		won = false;
+		score = 0;
+	}
+	
 	public int getClock()
 	{
 		return clock;
