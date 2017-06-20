@@ -437,7 +437,7 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 			if(lvl.won())
 			{
 				success = true;
-				
+				return;
 			}
 			else
 			{
