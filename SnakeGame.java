@@ -38,6 +38,7 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 	private static Level theLvl;
 	private static SnakeEnv theEnv;
 	public static int lives = 3;
+	private static int totalScore;
 	
 	public SnakeGame()
 	{
@@ -86,8 +87,11 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 			g.drawString("Level: " +currLvl, 50, 575);
 			g.drawString("Lives: " +lives, 120, 595);
 			g.drawString("Food Eaten: " +theLvl.getFoodEaten() +"/" +theLvl.getFoodReq(), 125, 575);
+			totalScore = score + theLvl.getScore() - theLvl.getClock()/(2*(int)(.5*theLvl.getFoodReq()+5));
+			if(totalScore < 0)
+				totalScore = 0;
 			g.drawString("Points: " +theLvl.getScore() +"pts-" +theLvl.getClock()/(2*(int)(.5*theLvl.getFoodReq()+5))+"pts, Total = "
-					+(score + theLvl.getScore() - theLvl.getClock()/(2*(int)(.5*theLvl.getFoodReq()+5))), 245, 575);
+					+(totalScore), 245, 575);
 			g.drawString("Time: " +theLvl.getClock(), 470, 575);
 			
 			for(int i = 0; i < theEnv.numObjects(); i++)
