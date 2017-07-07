@@ -460,7 +460,13 @@ public class SnakeGame extends JPanel implements KeyListener, MouseListener
 		{
 			window.repaint();
 		}
-		success = false;
+		if(resPress)
+		{
+			restartScreen = false;
+			lives = 3;
+		}
+		else
+			success = false;
 			
 	}
 	
